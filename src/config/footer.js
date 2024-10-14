@@ -7,15 +7,6 @@ export const footerSocials = [
 ]
 
 export const footerLists = [
-//	{
-//		title: 'Landing Pages',
-//		items: [
-//			{
-//				title: 'Landing Page 1',
-//				slug: '/landing-pages/landing-1',
-//			},
-//		],
-//	},
 	{
 		title: 'Company',
 		items: [
