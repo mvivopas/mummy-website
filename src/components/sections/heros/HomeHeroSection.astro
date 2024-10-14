@@ -8,32 +8,21 @@ import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
 <Container>
 	<section class="hero-section__section">
 		<div class="hero-section__text">
-				<h1>Welcome to Odyssey</h1>
+				<h1>Abogada en derecho civil</h1>
 				<p>
-					A marketing website theme built with <a
-						href="https://astro.build"
-						target="_blank"
-						rel="noreferrer">Astro</a
-					> and carefully crafted for startups and businesses.
+                    Abogada licenciada en Derecho por la Universidad Central de Barcelona en 1987,
+                    con más de 30 años de experiencia en la práctica jurídica.
+                    <br></br>
+                    Especializada en Derecho de Familia, Derechos Reales, Derecho de Obligaciones y Contratos,
+                    Responsabilidad Civil y Derecho Sucesorio. Despacho ubicado en Ciutadella de Menorca.
 				</p>
-				<div class="hero-btns__container">
-					<Button href="/theme/get-started" customIcon
-						>Get Started
-            <Fragment slot="icon">
-              <Icon name="ic:baseline-chevron-right"/>
-            </Fragment>
-            </Button
-					>
-					<Button href="/theme/style-guide" unelevated>Style Guide</Button>
-				</div>
-        {settings.enableThemeSwitcher && <ThemeSwitcher client:only/>}
 		</div>
 		<div class="hero-section__image">
 				<picture>
 					<img
-						src="/assets/images/home/classic-hero.jpg"
-						alt="Astro Odyssey"
-						id="home-hero-image"
+						src="/assets/images/home/main-photo-aina.jpg"
+						alt="Aina Pascual Mir"
+						id="home-aina-image"
 					/>
 				</picture>
 		</div>
@@ -42,7 +31,7 @@ import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
 
 <style>
 	.hero-section__section {
-		margin: var(--section-margin) auto;
+        margin: var(--section-margin) auto;
 		min-height: clamp(90vh, 100vw, calc(100vh - var(--navbar-height)));
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -50,8 +39,8 @@ import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
 		gap: 1rem;
 	}
 	.hero-section__text {
-		justify-self: center;
-		max-width: 25rem;
+	    justify-self: flex-start;
+		max-width: 50rem;
 	}
 	.hero-btns__container {
 		display: flex;
