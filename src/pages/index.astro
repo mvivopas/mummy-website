@@ -3,21 +3,15 @@ import { Container, FeatureCard } from '@components/odyssey-theme';
 
 import Layout from '../layouts/Page.astro';
 import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro';
+import Features from "../components/cards/FeatureItem.astro";
 ---
 
 <Layout>
 	<HomeHeroSection />
 	<Container>
 		<section class="feature-card__section">
-			<h2>Areas de especialidad</h2>
-			<p>
-				.
-			</p>
-			<div class="feature-card__grid">
-				<FeatureCard href="/landing-pages/landing-1" title="Derecho de Familia" imgSrc="/assets/images/home/screenshots/geese-family">
-				</FeatureCard>
-				<FeatureCard href="/landing-pages/landing-2" title="Derecho de Obligaciones y Contratos" imgSrc="/assets/images/home/screenshots/landing-2">
-				</FeatureCard>
+			<div class="space-y-24 px-8 py-32">
+                <Features />
 			</div>
 		</section>
 	</Container>
