@@ -48,7 +48,21 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
           </div>
         ))
       }
+      <!-- Right side for Google Maps iframe -->
+      <div class="footer-map__container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d764.1155979095012!2d3.8353823285393904!3d39.99811799821199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12be03f7975bdcb3%3A0x626b40ff83c10460!2sCarrer%20de%20Mallorca%2C%2020%2C%2007760%20Ciutadella%20de%20Menorca%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1729272502493!5m2!1ses!2ses"
+          width="450"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
     </div>
+
+
     <div class="footer-copyright__container">
       {showPlug && <Plug/>}
       <p>Copyright &copy; {new Date().getFullYear()} {copyrightName}</p>
@@ -68,9 +82,10 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
     border-top-right-radius: var(--theme-shape-radius);
   }
   .footer-grid__container {
-    padding: 10vh 0 1rem 0;
+    padding:5vh 0 0 0;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 400px 200px 350px 100px;
+    gap: 2rem;
   }
   .footer-socials__list {
     margin: 1rem 0;
@@ -95,6 +110,10 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
   .footer-link__list li a:hover {
     opacity: 0.84;
   }
+  .footer-map__container iframe {
+  border-radius: 30px; /* Rounded edges */
+  overflow: hidden; /* Hide overflow */
+  }
   .footer-copyright__container {
     display: flex;
     flex-direction: column;
@@ -109,7 +128,7 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
     }
     .footer-grid__container {
       padding: 5vh 0;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1rem;
     }
   }
