@@ -1,0 +1,49 @@
+---
+import { TextSection } from '@components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+import HeroSection from '../../components/sections/heros/HeroSection.astro';
+import FeatureContentSection from "../../components/sections/FeatureContentSection.astro";
+
+const seo = {
+	title: 'Aina Pascual | Despacho',
+	description: 'Ubicación Despacho',
+};
+---
+
+<Layout {seo}>
+	<HeroSection>
+		<div slot="text-container" class="text-container">
+			<h1>Dónde encontrarnos</h1>
+			<h4>
+				Despacho ubicado en Ciutadella de Menorca, en el <span class="highlighted-text">número 20 de la calle Mallorca </span>. <br></br>
+				Estamos abiertos al público de <span class="highlighted-text"> lunes a viernes de 9:00 a 13:00</span> y por la tarde para citas concertadas. <br></br>
+				Para reservar cita pulsa <a class="highlighted-text" href="/company/contact"> <u>aquí</u></a>.
+			</h4>
+		</div>
+    <picture slot="image-container">
+      <img
+        src="/assets/images/home/office-mock.jpg"
+        alt="Astro Odyssee"
+        id="home-hero-image"
+      />
+    </picture>
+	</HeroSection>
+</Layout>
+
+<style>
+		.text-container {
+		max-width: 600px; /* Limit the width of the text */
+		margin-right: 2rem; /* Add some space between the text and image */
+	  }
+		.main-text {
+        font-weight: bold; /* Optional: make the text bold */
+    }
+		.highlighted-text {
+        color: var(--theme-primary);
+        font-weight: bold; /* Optional: make the text bold */
+    }
+		.reserve-link:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+</style>
