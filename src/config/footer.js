@@ -6,34 +6,35 @@ export const footerSocials = [
   },
 ]
 
+
 export const footerLists = [
 	{
-		title: 'Company',
+		title: 'Despacho',
 		items: [
 			{
-				title: 'About',
-				slug: '/company/about',
+				title: 'Dónde estamos',
+				slug: '/company/office'
 			},
 			{
-				title: 'Contact',
-				slug: '/company/contact',
-			},
-		],
+				title: 'Contacta',
+				slug: '/company/contact'
+			}
+		]
 	},
 	{
 		title: 'Areas de especialidad',
 		items: [
 			{
 				title: 'Derecho de Familia',
-				slug: '/areas/derecho-de-familia',
+				slug: '/areas/derecho-de-familia'
 			},
 			{
 				title: 'Derecho Sucesorio',
-				slug: '/areas/derecho-civil',
+				slug: '/areas/derecho-civil'
 			},
 			{
 				title: 'Derecho Real',
-				slug: '/areas/derecho-inmobiliario',
+				slug: '/areas/derecho-inmobiliario'
 			},
 			{
 				title: 'Responsabilidad civil',
