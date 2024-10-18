@@ -1,22 +1,18 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { Container, Button } from '@components/odyssey-theme';
-import settings from '../../../config/settings.js';
-import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
+import { Container } from '@components/odyssey-theme';
+import FeatureContentSection from "../FeatureContentSection.astro";
 ---
 
 <Container>
-	<section class="hero-section__section">
-		<div class="hero-section__text">
-				<h1>Abogada en derecho civil</h1>
-				<p>
-                    Abogada licenciada en Derecho por la Universidad Central de Barcelona en 1987,
-                    con más de 30 años de experiencia en la práctica jurídica.
-                    <br></br>
-                    Especializada en Derecho de Familia, Derechos Reales, Derecho de Obligaciones y Contratos,
-                    Responsabilidad Civil y Derecho Sucesorio. Despacho ubicado en Ciutadella de Menorca.
-				</p>
-		</div>
+    <section class="hero-section__section">
+	    <FeatureContentSection title="Abogada en derecho civil">
+            <h3 slot="lead">
+                Licenciada en Derecho por la Universidad de Barcelona en 1987. <br></br>
+                <span class="highlighted-text">Más de 30 años </span>de experiencia en la práctica jurídica. <br></br>
+                <span class="highlighted-text">Más de 1.000 casos</span> líderados en procedimientos jurídicos. <br></br>
+								Con despacho ubicado en <span class="highlighted-text"> Ciutadella de Menorca</span>.
+            </h3>
+        </FeatureContentSection>
 		<div class="hero-section__image">
 				<picture>
 					<img
@@ -35,12 +31,12 @@ import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
 		min-height: clamp(90vh, 100vw, calc(100vh - var(--navbar-height)));
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		gap: 1rem;
+		align-items: left;
+		gap: 5rem;
 	}
 	.hero-section__text {
 	    justify-self: flex-start;
-		max-width: 50rem;
+		max-width: 25rem;
 	}
 	.hero-btns__container {
 		display: flex;
@@ -60,6 +56,10 @@ import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
 		object-fit: cover;
 		border-radius: var(--theme-shape-radius);
 	}
+	.highlighted-text {
+        color: var(--theme-primary);
+        font-weight: bold; /* Optional: make the text bold */
+    }
 	@media (max-width: 768px) {
 		.hero-section__section {
 			grid-template-columns: 1fr;
