@@ -1,18 +1,112 @@
 ---
 import { Button, FormInput, FormTextarea } from '@components/odyssey-theme';
+
+const apiKey = import.meta.env.WEB3FORMS_API_KEY;
 ---
 
-<form name="Formulario de contacto" method="POST" action="/contact-thank-you">
+<form name="Formulario de contacto" method="POST" id="form">
+  <input type="hidden" name="access_key" value={apiKey}>
+  <input type="hidden" name="subject" value="Nuevo mensaje de la web!">
   <FormInput type="text" label="Nombre completo" name="name" placeholder="Nombre Apellido" />
   <FormInput type="email" label="Correo electrónico" name="email" placeholder="nombre@gmail.com" />
   <FormTextarea label="Motivo de la visita" name="message" placeholder="Danos algunos detalles sobre tu consulta para que te podamos ayudar mejor..." />
-  <Button>Enviar correo</Button>
+  <Button type="submit" id="submit-btn"><b>Enviar correo</b></Button>
+
+  <section class="contact-hero__section hidden" id="result-section">
+    <div class="contact-hero__text-section">
+      <h3 id="result" class="result-message"></h3>
+    </div>
+  </section>
 </form>
+
+<script is:inline>
+const form = document.getElementById('form');
+const resultDiv = document.getElementById('result');
+const resultSection = document.getElementById('result-section');
+
+form.addEventListener('submit', function(e) {
+    const formData = new FormData(form);
+    e.preventDefault();
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    // Show loading state
+    resultDiv.textContent = "Enviando formulario de contacto..."
+    resultDiv.className = "result-message loading";
+    resultSection.classList.remove('hidden');
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          resultDiv.innerHTML = `
+            <p>¡Correo enviado con éxito!</p>
+            <p>Nos pondremos en contacto contigo lo antes posible.</p>
+          `;
+          resultDiv.className = "result-message success";
+        } else {
+          console.log(json.message)
+          resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
+          resultDiv.className = "result-message error";
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    })
+    .then(function() {
+      form.reset();
+  });
+});
+</script>
 
 <style>
   form {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .contact-hero__section {
+		margin: var(--section-margin) auto;
+		display: grid;
+		grid-template-columns: 10fr 1fr;
+		min-height: calc(90vh - var(--navbar-height));
+		gap: 3rem;
+	}
+  .contact-hero__section.hidden {
+    display: none; /* Initially hide this section */
+  }
+	.contact-hero__text-section {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: var(--theme-surface-1);
+		border-radius: var(--theme-shape-radius);
+	}
+
+  .result-message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--theme-on-surface-1);
+  }
+
+  .result-message.loading {
+    color: var(--theme-on-surface-1);
+  }
+
+  .result-message.success {
+    color: var(--theme-on-surface-1);
+  }
+
+  .result-message.error {
+    color: var(--theme-on-surface-1);
   }
 </style>
