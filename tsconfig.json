@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false,
     "baseUrl": "src",
 		// Add type definitions for our Vite runtime.
