@@ -1,15 +1,25 @@
 ---
-import { Button, FormInput, FormTextarea } from '@components/odyssey-theme';
+import { Button, FormInput, FormTextarea, FormSelect } from '@components/odyssey-theme';
 
 const apiKey = import.meta.env.WEB3FORMS_API_KEY;
+
+const selectOptions = [
+  "Derecho Real",
+  "Derecho sucesorio",
+  "Derecho de contratos y obligaciones",
+  "Responsabilidad civil",
+]
 ---
 
 <form name="Formulario de contacto" method="POST" id="form">
   <input type="hidden" name="access_key" value={apiKey}>
   <input type="hidden" name="subject" value="Nuevo mensaje de la web!">
-  <FormInput type="text" label="Nombre completo" name="name" placeholder="Nombre Apellido" />
-  <FormInput type="email" label="Correo electrónico" name="email" placeholder="nombre@gmail.com" />
-  <FormTextarea label="Motivo de la visita" name="message" placeholder="Danos algunos detalles sobre tu consulta para que te podamos ayudar mejor..." />
+  <FormInput label="Nombre completo" name="name" placeholder="Nombre Apellido" />
+  <FormInput label="Teléfono de contacto" name="phone" placeholder="651375623" />
+  <FormInput label="Correo electrónico" name="email" placeholder="nombre@gmail.com" />
+  <FormSelect label="Tema de la consulta" name="theme" options={selectOptions}/>
+  <FormTextarea label="Información complementaria sobre la consulta" name="message"
+      placeholder="Danos algunos detalles sobre tu consulta para que te podamos ayudar mejor (Mínimo 100 carácteres)..." />
   <Button type="submit" id="submit-btn"><b>Enviar correo</b></Button>
 
   <section class="contact-hero__section hidden" id="result-section">
@@ -25,6 +35,49 @@ const resultDiv = document.getElementById('result');
 const resultSection = document.getElementById('result-section');
 
 form.addEventListener('submit', function(e) {
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const theme = form.querySelector('input[name="theme"]').value;
+    const message = form.querySelector('input[name="message"]').value.trim();
+
+    // Validation
+    let errors = [];
+
+    // Name: Minimum 2 words
+    if (name.split(' ').length < 2) {
+      errors.push("Por favor, introduce tu nombre completo.");
+    }
+
+    // Email: Validate using regex
+    const emailRegex = /^\w+@\w+\.\w+$/;
+    if (!emailRegex.test(email)) {
+      errors.push("Por favor, introduce un correo electrónico válido.");
+    }
+
+    // Phone: Minimum 9 digits, validate with regex
+    const phoneRegex = /^\d{9,}$/;
+    if (!phoneRegex.test(phone)) {
+      errors.push("Por favor, introduce un número de teléfono válido (mínimo 9 dígitos).");
+    }
+
+    // Theme: Must select at least one option
+    if (!theme) {
+      errors.push("Por favor, selecciona un tema de consulta.");
+    }
+
+    // Message: Minimum 100 characters
+    if (message.length < 100) {
+      errors.push("El mensaje debe contener al menos 100 caracteres.");
+    }
+
+    if (errors.length > 0) {
+      resultDiv.innerHTML = errors.join('<br>');
+      resultDiv.className = "result-message error";
+      resultSection.classList.remove('hidden');
+      return;
+    }
+
     const formData = new FormData(form);
     e.preventDefault();
     const object = Object.fromEntries(formData);
