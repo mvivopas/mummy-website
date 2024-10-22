@@ -14,72 +14,106 @@ const selectOptions = [
 <form name="Formulario de contacto" method="POST" id="form">
   <input type="hidden" name="access_key" value={apiKey}>
   <input type="hidden" name="subject" value="Nuevo mensaje de la web!">
-  <FormInput label="Nombre completo" name="name" placeholder="Nombre Apellido" />
-  <FormInput label="Teléfono de contacto" name="phone" placeholder="651375623" />
-  <FormInput label="Correo electrónico" name="email" placeholder="nombre@gmail.com" />
-  <FormSelect label="Tema de la consulta" name="theme" options={selectOptions}/>
-  <FormTextarea label="Información complementaria sobre la consulta" name="message"
-      placeholder="Danos algunos detalles sobre tu consulta para que te podamos ayudar mejor (Mínimo 100 carácteres)..." />
-  <Button type="submit" id="submit-btn"><b>Enviar correo</b></Button>
+  <FormInput
+    type="text"
+    label="Nombre completo"
+    name="name"
+    id="name-input"
+    placeholder="Nombre Apellido"
+    required />
+  <div class="error-message" id="name-error-message"></div>
+  <FormInput
+    label="Teléfono de contacto"
+    name="phone"
+    placeholder="651375623"
+    required />
+  <div class="error-message" id="phone-error-message"></div>
+  <FormInput
+    type="email"
+    label="Correo electrónico"
+    name="email"
+    placeholder="nombre@gmail.com"
+    required />
+  <FormSelect
+    label="Tema de la consulta"
+    name="theme"
+    options={selectOptions}
+    required />
+  <FormTextarea
+      type="text"
+      label="Información complementaria sobre la consulta"
+      name="message"
+      id="message-textarea"
+      placeholder="Danos algunos detalles sobre tu consulta para que te podamos ayudar mejor..."
+      required />
+  <div class="error-message" id="message-error-message"></div>
+  <Button
+    type="submit"
+    id="submit-btn">
+    <b>Enviar correo</b>
+  </Button>
 
   <section class="contact-hero__section hidden" id="result-section">
-    <div class="contact-hero__text-section">
+    <div class="contact-hero__text-section" id="text-section">
       <h3 id="result" class="result-message"></h3>
     </div>
   </section>
 </form>
 
 <script is:inline>
-const form = document.getElementById('form');
-const resultDiv = document.getElementById('result');
-const resultSection = document.getElementById('result-section');
+  const form = document.getElementById('form');
+  const resultDiv = document.getElementById('result');
+  const resultSection = document.getElementById('result-section');
+  const textSection = document.getElementById('text-section');
+  const nameErrorMessage = document.getElementById('name-error-message');
+  const phoneErrorMessage = document.getElementById('phone-error-message');
+  const messageErrorMessage = document.getElementById('message-error-message');
 
 form.addEventListener('submit', function(e) {
-    const name = form.querySelector('input[name="name"]').value.trim();
-    const phone = form.querySelector('input[name="phone"]').value.trim();
-    const email = form.querySelector('input[name="email"]').value.trim();
-    const theme = form.querySelector('input[name="theme"]').value;
-    const message = form.querySelector('input[name="message"]').value.trim();
+  e.preventDefault();
+  const formData = new FormData(form);
 
-    // Validation
-    let errors = [];
+  textSection.classList.remove('error');
+  nameErrorMessage.classList.remove('visible');
+  nameErrorMessage.textContent = '';
+  phoneErrorMessage.classList.remove('visible');
+  phoneErrorMessage.textContent = '';
+  messageErrorMessage.classList.remove('visible');
+  messageErrorMessage.textContent = '';
+  let isValid = true;
+  const name = formData.get('name');
+  if (typeof name !== 'string' || name.split(' ').length < 2) {
+  // Display error under the name field
+    nameErrorMessage.textContent = "Por favor, ingrese un nombre y apellido.";
+    nameErrorMessage.classList.add('visible');
+    isValid = false;
+  }
 
-    // Name: Minimum 2 words
-    if (name.split(' ').length < 2) {
-      errors.push("Por favor, introduce tu nombre completo.");
-    }
+  const phone = formData.get('phone');
+  if (phone.length !== 9 || !/^\d+$/.test(phone)) {
+    phoneErrorMessage.textContent = "Por favor, ingrese un número de teléfono de 9 dígitos sin extensión, por ejemplo 651375821.";
+    phoneErrorMessage.classList.add('visible');
+    isValid = false;
+  }
 
-    // Email: Validate using regex
-    const emailRegex = /^\w+@\w+\.\w+$/;
-    if (!emailRegex.test(email)) {
-      errors.push("Por favor, introduce un correo electrónico válido.");
-    }
+  const message = formData.get('message');
+  console.log(message.length);
+  if (message.length < 50) {
+    messageErrorMessage.textContent = `Por favor, denos más detalles sobre el motivo de consulta, ahora ha introducido ${message.length} caracteres (Mínimo 50 caracteres, equivalente a un par de líneas).`;
+    messageErrorMessage.classList.add('visible');
+    isValid = false;
+  } else if (message.length > 500) {
+    messageErrorMessage.textContent = `Por favor, intente ser más conciso, ha introducido ${message.length} caracteres (Máximo 500 caracteres).`;
+    messageErrorMessage.classList.add('visible');
+    isValid = false;
+  }
 
-    // Phone: Minimum 9 digits, validate with regex
-    const phoneRegex = /^\d{9,}$/;
-    if (!phoneRegex.test(phone)) {
-      errors.push("Por favor, introduce un número de teléfono válido (mínimo 9 dígitos).");
-    }
-
-    // Theme: Must select at least one option
-    if (!theme) {
-      errors.push("Por favor, selecciona un tema de consulta.");
-    }
-
-    // Message: Minimum 100 characters
-    if (message.length < 100) {
-      errors.push("El mensaje debe contener al menos 100 caracteres.");
-    }
-
-    if (errors.length > 0) {
-      resultDiv.innerHTML = errors.join('<br>');
-      resultDiv.className = "result-message error";
-      resultSection.classList.remove('hidden');
-      return;
-    }
-
-    const formData = new FormData(form);
-    e.preventDefault();
+  if(!isValid) {
+    resultSection.classList.remove('hidden');
+    textSection.classList.add('error');
+    resultDiv.textContent = "Error al enviar el formulario. Por favor, revise los campos introducidos.";
+    resultDiv.className = "result-message error";
+  } else {
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
@@ -89,33 +123,34 @@ form.addEventListener('submit', function(e) {
     resultSection.classList.remove('hidden');
 
     fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: json
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
     })
-    .then(async (response) => {
+      .then(async (response) => {
         let json = await response.json();
         if (response.status == 200) {
           resultDiv.innerHTML = `
-            <p>¡Correo enviado con éxito!</p>
-            <p>Nos pondremos en contacto contigo lo antes posible.</p>
-          `;
+              <p>¡Correo enviado con éxito!</p>
+              <p>Nos pondremos en contacto contigo lo antes posible.</p>
+            `;
           resultDiv.className = "result-message success";
         } else {
           console.log(json.message)
           resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
           resultDiv.className = "result-message error";
         }
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.log(error);
-    })
-    .then(function() {
-      form.reset();
-  });
+      })
+      .then(function() {
+        form.reset();
+      });
+  }
 });
 </script>
 
@@ -136,6 +171,9 @@ form.addEventListener('submit', function(e) {
   .contact-hero__section.hidden {
     display: none; /* Initially hide this section */
   }
+  .contact-hero__text-section.error {
+		background-color: var(--theme-error-bg);
+	}
 	.contact-hero__text-section {
 		padding: 2rem;
 		display: flex;
@@ -144,7 +182,15 @@ form.addEventListener('submit', function(e) {
 		background-color: var(--theme-surface-1);
 		border-radius: var(--theme-shape-radius);
 	}
-
+  .error-message {
+  color: #d90f0f;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  visibility: hidden; /* Hidden by default */
+  }
+  .error-message.visible {
+    visibility: visible;
+  }
   .result-message {
     margin-top: 1rem;
     font-size: 1rem;
@@ -160,6 +206,6 @@ form.addEventListener('submit', function(e) {
   }
 
   .result-message.error {
-    color: var(--theme-on-surface-1);
+    color: var(--theme-on-primary);
   }
 </style>
