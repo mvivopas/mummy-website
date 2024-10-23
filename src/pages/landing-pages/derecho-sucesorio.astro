@@ -1,0 +1,58 @@
+---
+import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
+import TextSection from '../../components/sections/TextSection.astro'
+
+const seo = {
+	title: 'Aina Pascual | Derecho Sucesorio',
+	description: 'Aina Pascual | Derecho Sucesorio',
+};
+---
+
+<Layout {seo}>
+	<TextAndImageHero reversed>
+		<div slot="text-container">
+			<h1>Derecho Sucesorio</h1>
+			<em>
+        El derecho de sucesiones regula la sucesión mortis causa de las titularidades y relaciones jurídicas tanto activas como pasivas de una persona.
+      </em>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/areas_especialidad/derecho-sucesiones.jpeg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</TextAndImageHero>
+
+	<TextSection>
+		<h2>Principales procedimientos</h2>
+		<h3>Declaración de herederos</h3>
+		<p>
+			En ausencia de testamento, o cuando alguna parte de la herencia no está claramente asignada, es
+			fundamental iniciar un procedimiento para identificar a los herederos legales. Dado que este proceso
+			puede resultar complejo, es recomendable contar con el asesoramiento de un abogado especializado que
+			guíe los trámites, ya sea ante notario o en vía judicial, según corresponda.
+		</p>
+
+		<h3>Partición de la herencia</h3>
+		<p>
+			Una vez identificados los herederos, se procede a repartir el patrimonio del fallecido. Aunque la partición
+			puede realizarse de mutuo acuerdo entre los herederos, si surgen desacuerdos o conflictos entre herederos,
+			es necesario recurrir a un procedimiento judicial para que un juez determine la forma más justa de repartir
+			la herencia.
+		</p>
+		<h3>Colación hereditaria</h3>
+		<p>
+			La colación hereditaria es el proceso por el cual los herederos forzosos deben reintegrar al caudal
+			hereditario los bienes o donaciones que hayan recibido en vida del fallecido, con el fin de garantizar
+			una distribución justa de la herencia. En casos de herencias con bienes inmuebles, empresas o propiedades
+			de gran valor, la colación puede ser un proceso complejo que requiere la intervención de un abogado para
+			identificar qué bienes deben colacionarse y en qué términos.
+		</p>
+
+	</TextSection>
+
+</Layout>

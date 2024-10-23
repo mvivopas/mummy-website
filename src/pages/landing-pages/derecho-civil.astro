@@ -1,0 +1,50 @@
+---
+import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
+import TextSection from '../../components/sections/TextSection.astro'
+
+const seo = {
+	title: 'Aina Pascual | Derecho de Responsabilidad Civil',
+	description: 'Aina Pascual | Derecho de Responsabilidad Civil',
+};
+---
+
+<Layout {seo}>
+	<TextAndImageHero reversed>
+		<div slot="text-container">
+			<h1>Responsabilidad Civil</h1>
+      <em>
+				Rama del derecho que regula la obligación legal de una persona de reparar los daños
+				y perjuicios que haya causado a otra, ya sea por una acción u omisión. Garantizando
+				que quien sufra un daño, ya sea físico, material o moral, reciba una compensación adecuada.
+      </em>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/areas_especialidad/derecho-civil.jpeg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</TextAndImageHero>
+
+	<TextSection>
+
+		<h2>Principales procedimientos</h2>
+		<h3>Reclamación por daños y perjuicios</h3>
+		<p>
+			Es el proceso mediante el cual una persona afectada solicita una compensación económica
+			por los daños que ha sufrido. Algunos ejemplos son los accidentes de tráfico, lesiones
+			personales en lugares públicos, accidentes laborales, difamación o daños a la propiedad.
+		</p>
+		<h3>Negligencia profesional</h3>
+		<p>
+			Los profesionales, como médicos, abogados o arquitectos, pueden incurrir en responsabilidad civil si
+			sus acciones u omisiones causan un perjuicio a sus clientes o a terceros. Es necesario
+			iniciar un procedimiento para cuantificar y reclamar los daños sufridos, demostrando que ha habido
+			negligencia en el ejercicio de la profesión.
+		</p>>
+	</TextSection>
+
+</Layout>
