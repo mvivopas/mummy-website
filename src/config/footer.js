@@ -26,19 +26,19 @@ export const footerLists = [
 		items: [
 			{
 				title: 'Responsabilidad civil',
-				slug: '/areas/derecho-tributario',
-			},
-			{
-				title: 'Derecho Sucesorio',
-				slug: '/areas/derecho-civil'
-			},
-			{
-				title: 'Derecho Real',
-				slug: '/areas/derecho-inmobiliario'
+				slug: '/landing-pages/derecho-civil',
 			},
 			{
 				title: 'Derecho de obligaciones',
-				slug: '/areas/derecho-de-sucesiones',
+				slug: '/landing-pages/derecho-contratos',
+			},
+			{
+				title: 'Derecho Real',
+				slug: '/landing-pages/derecho-real'
+			},
+			{
+				title: 'Derecho Sucesorio',
+				slug: '/landing-pages/derecho-sucesorio'
 			},
 		],
 	}
