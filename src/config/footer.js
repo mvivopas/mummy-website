@@ -25,8 +25,8 @@ export const footerLists = [
 		title: 'Areas de especialidad',
 		items: [
 			{
-				title: 'Derecho de Familia',
-				slug: '/areas/derecho-de-familia'
+				title: 'Responsabilidad civil',
+				slug: '/areas/derecho-tributario',
 			},
 			{
 				title: 'Derecho Sucesorio',
@@ -35,10 +35,6 @@ export const footerLists = [
 			{
 				title: 'Derecho Real',
 				slug: '/areas/derecho-inmobiliario'
-			},
-			{
-				title: 'Responsabilidad civil',
-				slug: '/areas/derecho-tributario',
 			},
 			{
 				title: 'Derecho de obligaciones',
