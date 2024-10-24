@@ -1,0 +1,52 @@
+---
+import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
+import TextSection from '../../components/sections/TextSection.astro'
+
+const seo = {
+	title: 'Aina Pascual | Derecho de Obligaciones y Contratos',
+	description: 'Aina Pascual | Derecho de Obligaciones y Contratos',
+};
+---
+
+<Layout {seo}>
+	<TextAndImageHero reversed>
+		<div slot="text-container">
+			<h1>Derecho de Obligaciones y Contratos</h1>
+			<em>
+		        El derecho de familia tiene como objetivo principal la protección de los derechos y el bienestar de todos los miembros de la familia, especialmente de los más vulnerables, como los niños y los ancianos.
+	        </em>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/areas_especialidad/derecho-contratos.jpg"
+				alt="Astro Odyssey"
+				loading="lazy"
+			/>
+		</picture>
+	</TextAndImageHero>
+
+	<TextSection>
+
+		<h2>Principales procedimientos</h2>
+		<h3>Divorcio y separación</h3>
+		<p>
+			Proceso legal de disolución del matrimonio. Puede ser de mutuo acuerdo, cuando ambas partes están de acuerdo con la separación, o contencioso, cuando una de las partes no está de acuerdo.
+		</p>
+		<h3>División de bienes</h3>
+		<p>
+				Proceso mediante el cual se reparten los bienes, propiedades y deudas entre los cónyuges tras el divorcio. La forma en que se divide el patrimonio dependerá del régimen matrimonial bajo el cual los cónyuges se casaron.
+		</p>
+		<h3>Custodía de los hijos</h3>
+		<p>
+			Procedimiento para determinar quién será responsable del cuidado de los hijos menores de edad. La custodía puede ser compartida, ambos padres participan en la crianza, o exclusiva, un solo padre tiene la custodia.
+		</p>
+		<h3>Pensión alimenticia</h3>
+		<p>
+			Obligación de uno o ambos progenitores de proporcionar apoyo financiero para los hijos. En algunos casos también se incluye la pensión alimentaria entre cónyuges.
+		</p>
+
+	</TextSection>
+
+</Layout>
