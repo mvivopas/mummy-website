@@ -25,24 +25,20 @@ export const footerLists = [
 		title: 'Areas de especialidad',
 		items: [
 			{
-				title: 'Derecho de Familia',
-				slug: '/areas/derecho-de-familia'
-			},
-			{
-				title: 'Derecho Sucesorio',
-				slug: '/areas/derecho-civil'
-			},
-			{
-				title: 'Derecho Real',
-				slug: '/areas/derecho-inmobiliario'
-			},
-			{
 				title: 'Responsabilidad civil',
-				slug: '/areas/derecho-tributario',
+				slug: '/landing-pages/derecho-civil',
 			},
 			{
 				title: 'Derecho de obligaciones',
-				slug: '/areas/derecho-de-sucesiones',
+				slug: '/landing-pages/derecho-contratos',
+			},
+			{
+				title: 'Derecho Real',
+				slug: '/landing-pages/derecho-real'
+			},
+			{
+				title: 'Derecho Sucesorio',
+				slug: '/landing-pages/derecho-sucesorio'
 			},
 		],
 	}
