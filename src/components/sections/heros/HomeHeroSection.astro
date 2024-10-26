@@ -1,16 +1,23 @@
 ---
 import { Container } from '@components/odyssey-theme';
 import FeatureContentSection from "../FeatureContentSection.astro";
+import Stats from "../../cards/Stats.astro";
 ---
 
 <Container>
     <section class="hero-section__section">
 	    <FeatureContentSection title="Abogada en derecho civil">
+			<Stats
+			id="home-stats"
+			stats={[
+				{ amount: '+30', title: 'Años de experiencia', icon: 'mdi:account-star' },
+				{ amount: '+1.000', title: 'Procedimientos jurídicos', icon: 'mdi:gavel' },
+			]}
+			slot="stats"
+			/>
             <h3 slot="lead">
-                Licenciada en Derecho por la Universidad de Barcelona en 1987. <br></br>
-                <span class="highlighted-text">Más de 30 años </span>de experiencia en la práctica jurídica. <br></br>
-                <span class="highlighted-text">Más de 1.000 casos</span> líderados en procedimientos jurídicos. <br></br>
-								Con despacho ubicado en <span class="highlighted-text"> Ciutadella de Menorca</span>.
+                Licenciada en Derecho por la Universidad de Barcelona en <a class="highlighted-text" href="/company/about">1987</a>. <br></br>
+				Con despacho ubicado en <a class="highlighted-text" href="/company/office"> Ciutadella de Menorca</a>.
             </h3>
         </FeatureContentSection>
 		<div class="hero-section__image">
@@ -31,20 +38,14 @@ import FeatureContentSection from "../FeatureContentSection.astro";
 		min-height: clamp(90vh, 100vw, calc(100vh - var(--navbar-height)));
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		align-items: left;
+		align-items: center;
+		text-align: center;
 		gap: 5rem;
 	}
-	.hero-section__text {
-		justify-self: center;
-		max-width: 25rem;
-	}
-	.hero-btns__container {
+	.stats-container {
 		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-	.hero-btns__container {
-		margin-right: 1rem;
+		flex-direction: column; /* Allow for vertical stacking if needed */
+		align-items: center; /* Center items within the stats container */
 	}
 	.hero-section__image {
 		display: flex;
@@ -60,6 +61,10 @@ import FeatureContentSection from "../FeatureContentSection.astro";
         color: var(--theme-primary);
         font-weight: bold; /* Optional: make the text bold */
     }
+	.highlighted-text:hover {
+  		text-decoration: underline; /* Add underline on hover */
+  		text-decoration-color: var(--theme-primary); /* Specify underline color */
+	}
 	@media (max-width: 768px) {
 		.hero-section__section {
 			grid-template-columns: 1fr;
