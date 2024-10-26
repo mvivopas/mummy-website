@@ -12,6 +12,10 @@ export const footerLists = [
 		title: 'Despacho',
 		items: [
 			{
+				title: 'Sobre mí',
+				slug: '/company/about'
+			},
+			{
 				title: 'Dónde estamos',
 				slug: '/company/office'
 			},
