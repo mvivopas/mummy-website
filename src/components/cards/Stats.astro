@@ -11,21 +11,18 @@ const { stats = [], id, classes = {} } = Astro.props;
     class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[300px] text-center md:border-r md:last:border-none"
     style="border-color: var(--theme-on-bg); border-right-width: 3px; height: 200px;"
     >
-        {icon && (
-        <div class="flex items-center justify-center mx-auto mb-4 text-primary">
-            <Icon name={icon} class="w-7 h-7" />
-        </div>
-        )}
+ 
         {amount && (
-        <div class="font-heading lg:text-2xl xl:text-2xl text-[2.6rem] font-bold">
+        <h2 class="font-heading lg:text-3xl xl:text-3xl text-[2.6rem] font-bold" style="color: var(--theme-primary)">
             {amount}
-        </div>
+        </h2>
         )}
         {title && (
         <div class="text-sm font-medium uppercase tracking-widest lg:text-base">
             {title}
         </div>
         )}
+
     </div>
     ))}
 </div>
