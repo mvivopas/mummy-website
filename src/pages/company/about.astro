@@ -1,0 +1,75 @@
+---
+import { TextSection } from '@components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+
+const seo = {
+  title: `Aina Pascual | Curriculum`,
+  description: `Página con curriculum.`,
+};
+---
+
+<Layout seo={seo}>
+  <TextSection narrow>
+    <h1>De donde vengo</h1>
+
+    <p>
+      Licenciada en Derecho por la Universidad Central de Barcelona en el año <span class="highlighted-text">1987</span>. 
+    </p>
+
+    <p>
+      Durante los primeros años de profesión, trabajé cómo asociada en un despacho profesional en <span class="highlighted-text">Barcelona</span>,
+      especializado en el ámbito del <span class="highlighted-text">Derecho Civil y Mercantil</span>.     
+    </p>
+
+    <p>
+      Cinco años después, en <span class="highlighted-text">1992</span>, abrí <span class="highlighted-text">despacho profesional propio</span>
+      en Ciutadella de Menorca, especializado en Derecho Civil en el ámbito de las <span class="highlighted-text">Islas Baleares</span>.
+    </p>
+
+    <p>
+      Han pasado <span class="highlighted-text">más de 35 años</span> desde que empecé a ejercer la abogacia y estoy orgullosa de haber podido 
+      <span class="highlighted-text">ayudar a cientos de personas, empresas y entidades a resolver sus problemas legales</span>.
+      Durante este viaje he tenido la oportunidad de trabajar en un gran variedad
+      de casos de ámbitos muy diversos, lo que me ha permitido especializarme en diferentes áreas del derecho. Las principales ramas del
+      derecho en las que trabajo son el Derecho de <span class="highlighted-text">Responsabilidad Civil</span>, 
+      <span class="highlighted-text">Sucesorio</span>, <span class="highlighted-text">Contractual</span> y <span class="highlighted-text">Real</span>.
+    </p>
+
+    <p>
+      Además de formarme a partir de la experiencia del ejercicio de la abogacía, he asistido a conferencias, cursos y seminarios.
+      Hace unos años, ya con una amplia experiencia en el ejercicio de la abogacía, decidí cursar un 
+      <span class="highlighted-text">Máster en Derecho de Responsabilidad por daños y prejuicios</span> en la Universidad de X.
+    </p>
+
+    <h2> Conferencias y Seminarios </h2>
+    <li>
+      Element 1
+    </li>
+    <li>
+      Element 2
+    </li>
+
+  </TextSection>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .bold-text {
+    font-weight: bold;
+  }
+  .highlighted-text {
+    color: var(--theme-primary);
+    font-weight: bold;
+  }
+
+</style>
