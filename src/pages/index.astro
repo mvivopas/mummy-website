@@ -10,7 +10,7 @@ import Features from "../components/cards/FeatureItem.astro";
 	<HomeHeroSection />
 	<Container>
 		<section class="feature-card__section">
-			<div class="space-y-24 px-8 py-32">
+			<div class="space-y-24 px-8 py-26">
                 <Features />
 			</div>
 		</section>
@@ -20,11 +20,6 @@ import Features from "../components/cards/FeatureItem.astro";
 <style>
 	.feature-card__section {
 		margin: var(--section-margin) auto;
-	}
-	.feature-card__grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: var(--theme-grid-gap);
 	}
 	@media (max-width: 768px) {
 		.feature-card__grid {
