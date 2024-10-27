@@ -10,13 +10,12 @@ export interface Props {
 const { seo } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead {...seo} />
 	</head>
 	<body>
 		<SkipLink />
-    <slot name="announcement-bar" />
 		<slot name="header" />
 		<main id="content">
 			<slot />
