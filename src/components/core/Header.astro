@@ -41,14 +41,6 @@ const { navData, rightMenu } = Astro.props;
 
 <header id="odysseyNavHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
-  <button id="menuButton" title="Open Main Menu">
-    <span id="menuButtonIconHam">
-      <Icon name="ic:baseline-menu" width="24px" height="24px" />
-    </span>
-    <span id="menuButtonIconClose" hidden>
-      <Icon name="ic:baseline-close" width="24px" height="24px" />
-    </span>
-  </button>
   <a class="header-logo__link" href="/">
     <slot name="logo">
     </slot>
@@ -73,15 +65,21 @@ const { navData, rightMenu } = Astro.props;
 
 <style>
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 1rem 0.5rem;
+    padding: 0.25rem 0.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--theme-surface-1);
+    color: var(--theme-on-bg);
   }
   header.header--right {
     display: grid;
     grid-template-columns: 1fr auto auto;
+    color: var(--theme-on-bg);
   }
   .header-logo__link {
     width: fit-content;
@@ -96,19 +94,6 @@ const { navData, rightMenu } = Astro.props;
   .header-action-item__container {
     z-index: 100;
   }
-  #menuButton {
-    outline: none;
-    border: none;
-    background-color: transparent;
-    margin-right: 0.5rem;
-    display: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-  #menuButton > span {
-    color: var(--theme-on-bg);
-    vertical-align: middle;
-  }
   nav {
   display: flex;
   }
@@ -120,10 +105,12 @@ const { navData, rightMenu } = Astro.props;
   }
   nav ul li a {
     text-decoration: none;
-    margin-right: 1rem;
+    margin-right: 3rem;
     color: inherit;
-    opacity: 0.72;
+    opacity: 1;
     transition: opacity linear 150ms;
+    font-family: var(--theme-font-family-serif);
+    font-size: var(--font-size-base);
   }
   nav ul li a:hover {
     opacity: 1;

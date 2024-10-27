@@ -14,13 +14,24 @@ const { title, id } = Astro.props;
   <div class="flex flex-col items-center gap-4">
     <slot name="eyebrow" />
     <h2
-      class="gradient-text text-left font-extrabold tracking-tight text-6xl"
+      class="gradient-text text-center font-extrabold tracking-tight text-6xl"
     >
       {title}
     </h2>
+  </div>
+  <div class="stats-container">
+    <slot name="stats" />
   </div>
   <p class="max-w-xl text-left font-extrabold text-2xl">
     <slot name="lead" />
   </p>
   <slot />
 </section>
+
+<style>
+.stats-container {
+  display: flex;
+  flex-direction: column; /* Allow for vertical stacking if needed */
+  align-items: center; /* Center items within the stats container */
+}
+</style>

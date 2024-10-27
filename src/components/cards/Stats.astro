@@ -1,0 +1,39 @@
+---
+// Stats.astro
+import { Icon } from 'astro-icon/components';
+
+const { stats = [], id, classes = {} } = Astro.props;
+---
+
+<div class="stats-wrapper">
+    {stats.map(({ amount, title, icon }) => (
+    <div 
+    class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[300px] text-center md:border-r md:last:border-none"
+    style="border-color: var(--theme-on-bg); border-right-width: 3px; height: 200px;"
+    >
+ 
+        {amount && (
+        <h2 class="font-heading lg:text-3xl xl:text-3xl text-[2.6rem] font-bold" style="color: var(--theme-primary)">
+            {amount}
+        </h2>
+        )}
+        {title && (
+        <div class="text-sm font-medium uppercase tracking-widest lg:text-base">
+            {title}
+        </div>
+        )}
+
+    </div>
+    ))}
+</div>
+
+
+<style>
+    .stats-wrapper {
+		display: flex;
+		justify-content: center; /* Centers the stats horizontally */
+        text-align: left;
+		flex-wrap: wrap; /* Ensures that items wrap if necessary */
+		gap: 2rem; /* Optional: Adds spacing between the stats */
+	}
+</style>
