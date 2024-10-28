@@ -2,6 +2,7 @@
 import ContactForm from '../../components/forms/ContactForm.astro';
 import Layout from '../../layouts/Page.astro';
 import { Container } from '@components/odyssey-theme';
+import { Icon } from "astro-icon/components";
 
 const seo = {
 	title: 'Contact | Astro Odyssey Theme',
@@ -13,10 +14,15 @@ const seo = {
 	<Container>
 		<section class="contact-hero__section">
 			<div class="contact-hero__text-section">
+				<div class="mdi-icons-container">
+					<Icon name="mdi:phone"/>
+					<Icon name="mdi:email-arrow-right"/>
+					<Icon name="mdi:calendar-check-outline"/>
+				</div>
 				<h1>Reserva Cita</h1>
 				<p>
                     Puedes contactar con el despacho para reservar cita a través de nuestro número de teléfono o
-                    correo electrónico.
+                    mediante el formulario de contacto.
                     <br></br>
                     Llamanos de lunes a viernes de 9:00 a 13:00.
                     <br></br>
@@ -35,24 +41,34 @@ const seo = {
 
 <style>
 	.contact-hero__section {
-		margin: 120px auto;
+		margin: 150px auto;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		min-height: calc(90vh - var(--navbar-height));
-		gap: 3rem;
+		gap: 5rem;
 	}
 	.contact-hero__text-section {
-		padding: 2rem;
+		padding: 5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		background-color: var(--theme-surface-1);
+		background-color: var(--theme-surface-3);
 		border-radius: var(--theme-shape-radius);
 	}
 	.col-2__container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+	.mdi-icons-container {
+		display: flex;
+		/*justify-content: center;*/
+		gap: 3rem; /* Space between icons */
+		margin-bottom: 1.5rem; /* Space below icons and above title */
+		padding-left: 1.75rem;
+	}
+	[data-icon] {
+		font-size: 4rem;
 	}
 	@media (max-width: 768px) {
 		.contact-hero__section {

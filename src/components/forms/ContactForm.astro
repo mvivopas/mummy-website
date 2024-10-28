@@ -1,33 +1,28 @@
 ---
-import { Button, FormInput, FormTextarea, FormSelect } from '@components/odyssey-theme';
+import { Button } from '@components/odyssey-theme';
 
 const apiKey = import.meta.env.WEB3FORMS_API_KEY;
-
-const selectOptions = [
-  "Derecho Real",
-  "Derecho sucesorio",
-  "Derecho de contratos y obligaciones",
-  "Responsabilidad civil",
-]
 ---
 
 <form name="Formulario de contacto" method="POST" id="form">
-  <input type="hidden" name="access_key" value=[apiKey]>
+  <input type="hidden" name="access_key" value={apiKey}>
   <input type="hidden" name="subject" value="Nuevo mensaje de la web!">
   
   <!-- Form inputs with labels for demonstration -->
   <label for="name-input">Nombre completo</label>
   <input type="text" name="name" id="name-input" placeholder="Nombre Apellido" required />
-  
+  <div class="error-message" id="name-error-message"></div>
+
   <label for="phone-input">Teléfono de contacto</label>
   <input type="text" name="phone" id="phone-input" placeholder="651375623" required />
-  
+  <div class="error-message" id="phone-error-message"></div>
+
   <label for="email-input">Correo electrónico</label>
   <input type="email" name="email" id="email-input" placeholder="nombre@gmail.com" required />
   
   <label for="theme-select">Tema de la consulta</label>
   <select name="theme" id="theme-select" required>
-    <option value="" disabled selected>Seleccionar el tema</option>
+    <option value="" disabled selected>Selecciona un tema</option>
     <option value="Derecho Real">Derecho Real</option>
     <option value="Derecho sucesorio">Derecho sucesorio</option>
     <option value="Derecho de contratos y obligaciones">Derecho de contratos y obligaciones</option>
@@ -36,13 +31,14 @@ const selectOptions = [
   
   <label for="message-textarea">Información complementaria sobre la consulta</label>
   <textarea name="message" id="message-textarea" placeholder="Danos algunos detalles sobre tu consulta..." required></textarea>
+  <div class="error-message" id="message-error-message"></div>
 
-  <Button type="submit" id="submit-btn">
-    <b>Enviar correo</b>
-  </Button>
+  <button type="submit" id="submit-btn" class="form-button">
+    Enviar correo
+  </button>
 
-  <section class="contact-hero__section hidden" id="result-section">
-    <div class="contact-hero__text-section" id="text-section">
+  <section class="result-section hidden" id="result-section">
+    <div class="result-section-text" id="text-section">
       <h3 id="result" class="result-message"></h3>
     </div>
   </section>
@@ -87,7 +83,7 @@ form.addEventListener('submit', function(e) {
   const message = formData.get('message');
   console.log(message.length);
   if (message.length < 50) {
-    messageErrorMessage.textContent = `Por favor, denos más detalles sobre el motivo de consulta, ahora ha introducido ${message.length} caracteres (Mínimo 50 caracteres, equivalente a un par de líneas).`;
+    messageErrorMessage.textContent = `Por favor, denos más detalles sobre el motivo de consulta, ha introducido ${message.length} caracteres (Mínimo 50 caracteres, equivalente a un par de líneas).`;
     messageErrorMessage.classList.add('visible');
     isValid = false;
   } else if (message.length > 500) {
@@ -172,28 +168,39 @@ form.addEventListener('submit', function(e) {
   }
   textarea {
     width: 100%;
-    min-height: 200px;
+    min-height: 150px;
     padding: 0.75rem;
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: var(--font-size-base);
     box-sizing: border-box;
   }
-
-  .contact-hero__section {
+  .form-button {
+    font-family: var(--theme-font-family-serif);
+    font-size: var(--font-size-base);
+    background-color: var(--theme-surface-3); /* Change button color */
+    color: var(--theme-on-surface-1); /* Set text color */
+    padding: 1rem 1rem; /* Increase padding for a larger button */
+    border-radius: 8px; /* Optional: round the corners */
+  }
+  .form-button:hover {
+    color: var(--theme-on-primary);
+    background-color: var(--theme-primary-darker); /* Color on hover */
+  }
+  .result-section {
 		margin: var(--section-margin) auto;
 		display: grid;
 		grid-template-columns: 10fr 1fr;
 		min-height: calc(90vh - var(--navbar-height));
 		gap: 3rem;
 	}
-  .contact-hero__section.hidden {
+  .result-section.hidden {
     display: none; /* Initially hide this section */
   }
-  .contact-hero__text-section.error {
+  .result-section-text.error {
 		background-color: var(--theme-error-bg);
 	}
-	.contact-hero__text-section {
+	.result-section-text {
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
@@ -205,10 +212,10 @@ form.addEventListener('submit', function(e) {
   color: #d90f0f;
   font-size: 0.9rem;
   margin-top: 0.5rem;
-  visibility: hidden; /* Hidden by default */
+  display: none; /* Hidden by default */
   }
   .error-message.visible {
-    visibility: visible;
+    display: block;
   }
   .result-message {
     margin-top: 1rem;
