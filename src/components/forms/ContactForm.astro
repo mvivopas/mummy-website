@@ -1,33 +1,28 @@
 ---
-import { Button, FormInput, FormTextarea, FormSelect } from '@components/odyssey-theme';
+import { Icon } from "astro-icon/components";
 
 const apiKey = import.meta.env.WEB3FORMS_API_KEY;
-
-const selectOptions = [
-  "Derecho Real",
-  "Derecho sucesorio",
-  "Derecho de contratos y obligaciones",
-  "Responsabilidad civil",
-]
 ---
 
 <form name="Formulario de contacto" method="POST" id="form">
-  <input type="hidden" name="access_key" value=[apiKey]>
+  <input type="hidden" name="access_key" value={apiKey}>
   <input type="hidden" name="subject" value="Nuevo mensaje de la web!">
   
   <!-- Form inputs with labels for demonstration -->
   <label for="name-input">Nombre completo</label>
   <input type="text" name="name" id="name-input" placeholder="Nombre Apellido" required />
-  
+  <div class="error-message" id="name-error-message"></div>
+
   <label for="phone-input">Teléfono de contacto</label>
   <input type="text" name="phone" id="phone-input" placeholder="651375623" required />
-  
+  <div class="error-message" id="phone-error-message"></div>
+
   <label for="email-input">Correo electrónico</label>
   <input type="email" name="email" id="email-input" placeholder="nombre@gmail.com" required />
   
   <label for="theme-select">Tema de la consulta</label>
   <select name="theme" id="theme-select" required>
-    <option value="" disabled selected>Seleccionar el tema</option>
+    <option value="" disabled selected>Selecciona un tema</option>
     <option value="Derecho Real">Derecho Real</option>
     <option value="Derecho sucesorio">Derecho sucesorio</option>
     <option value="Derecho de contratos y obligaciones">Derecho de contratos y obligaciones</option>
@@ -36,16 +31,25 @@ const selectOptions = [
   
   <label for="message-textarea">Información complementaria sobre la consulta</label>
   <textarea name="message" id="message-textarea" placeholder="Danos algunos detalles sobre tu consulta..." required></textarea>
+  <div class="error-message" id="message-error-message"></div>
 
-  <Button type="submit" id="submit-btn">
-    <b>Enviar correo</b>
-  </Button>
-
-  <section class="contact-hero__section hidden" id="result-section">
-    <div class="contact-hero__text-section" id="text-section">
+  <section class="result-section" id="result-section">
+    <div class="result-section-text" id="text-section">
+      <div class="mdi-icon-success-container" id="success-icon-container">
+        <!-- Success Icon -->
+        <Icon name="mdi:email-fast" id="success-icon" />
+      </div>
+      <div class="mdi-icon-error-container" id="error-icon-container">
+        <!-- Error Icon -->
+        <Icon name="mdi:alert-circle" id="error-icon" />
+      </div>
       <h3 id="result" class="result-message"></h3>
     </div>
   </section>
+
+  <button type="submit" id="submit-btn" class="form-button">
+    Enviar correo
+  </button>
 </form>
 
 <script is:inline>
@@ -56,6 +60,8 @@ const selectOptions = [
   const nameErrorMessage = document.getElementById('name-error-message');
   const phoneErrorMessage = document.getElementById('phone-error-message');
   const messageErrorMessage = document.getElementById('message-error-message');
+  const successIcon = document.getElementById('success-icon-container');
+  const errorIcon = document.getElementById('error-icon-container');
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -87,7 +93,7 @@ form.addEventListener('submit', function(e) {
   const message = formData.get('message');
   console.log(message.length);
   if (message.length < 50) {
-    messageErrorMessage.textContent = `Por favor, denos más detalles sobre el motivo de consulta, ahora ha introducido ${message.length} caracteres (Mínimo 50 caracteres, equivalente a un par de líneas).`;
+    messageErrorMessage.textContent = `Por favor, denos más detalles sobre el motivo de consulta, ha introducido ${message.length} caracteres (Mínimo 50 caracteres, equivalente a un par de líneas).`;
     messageErrorMessage.classList.add('visible');
     isValid = false;
   } else if (message.length > 500) {
@@ -97,7 +103,7 @@ form.addEventListener('submit', function(e) {
   }
 
   if(!isValid) {
-    resultSection.classList.remove('hidden');
+    resultSection.classList.add('visible');
     textSection.classList.add('error');
     resultDiv.textContent = "Error al enviar el formulario. Por favor, revise los campos introducidos.";
     resultDiv.className = "result-message error";
@@ -108,7 +114,7 @@ form.addEventListener('submit', function(e) {
     // Show loading state
     resultDiv.textContent = "Enviando formulario de contacto..."
     resultDiv.className = "result-message loading";
-    resultSection.classList.remove('hidden');
+    resultSection.classList.add('visible');
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -126,10 +132,11 @@ form.addEventListener('submit', function(e) {
               <p>Nos pondremos en contacto contigo lo antes posible.</p>
             `;
           resultDiv.className = "result-message success";
+          successIcon.classList.add('visible');
         } else {
-          console.log(json.message)
           resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
           resultDiv.className = "result-message error";
+          errorIcon.classList.add('visible');
         }
       })
       .catch(error => {
@@ -172,32 +179,43 @@ form.addEventListener('submit', function(e) {
   }
   textarea {
     width: 100%;
-    min-height: 200px;
+    min-height: 150px;
     padding: 0.75rem;
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: var(--font-size-base);
     box-sizing: border-box;
   }
-
-  .contact-hero__section {
-		margin: var(--section-margin) auto;
-		display: grid;
-		grid-template-columns: 10fr 1fr;
-		min-height: calc(90vh - var(--navbar-height));
-		gap: 3rem;
-	}
-  .contact-hero__section.hidden {
-    display: none; /* Initially hide this section */
+  .form-button {
+    font-family: var(--theme-font-family-serif);
+    font-size: var(--font-size-base);
+    background-color: var(--theme-surface-3); /* Change button color */
+    color: var(--theme-on-surface-1); /* Set text color */
+    padding: 1rem 1rem; /* Increase padding for a larger button */
+    border-radius: 8px; /* Optional: round the corners */
+    margin-bottom: 0;
   }
-  .contact-hero__text-section.error {
+  .form-button:hover {
+    color: var(--theme-on-primary);
+    background-color: var(--theme-primary-darker); /* Color on hover */
+  }
+  .result-section {
+		grid-template-columns: 10fr 1fr;
+    padding: 0.75rem;
+    display: none; /* Initially hidden */
+	}
+  .result-section.visible {
+    display: block; /* Initially hide this section */
+  }
+  .result-section-text.error {
 		background-color: var(--theme-error-bg);
 	}
-	.contact-hero__text-section {
-		padding: 2rem;
+	.result-section-text {
+		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+    text-align: center;
 		background-color: var(--theme-surface-1);
 		border-radius: var(--theme-shape-radius);
 	}
@@ -205,26 +223,43 @@ form.addEventListener('submit', function(e) {
   color: #d90f0f;
   font-size: 0.9rem;
   margin-top: 0.5rem;
-  visibility: hidden; /* Hidden by default */
+  display: none; /* Hidden by default */
   }
   .error-message.visible {
-    visibility: visible;
+    display: block;
   }
   .result-message {
     margin-top: 1rem;
     font-size: 1rem;
     color: var(--theme-on-surface-1);
   }
-
   .result-message.loading {
     color: var(--theme-on-surface-1);
   }
-
   .result-message.success {
     color: var(--theme-on-surface-1);
   }
-
   .result-message.error {
-    color: var(--theme-on-primary);
+    color: var(--theme-on-surface-1);
+  }
+  .mdi-icon-success-container {
+    display: none;
+    font-size: 2.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .mdi-icon-success-container.visible {
+      display: flex; /* Show the container when the icon is visible */
+      text-align: center;
+  }
+	.mdi-icon-error-container {
+		display: none;
+		justify-content: center;
+    font-size: 2.5rem;
+    display: none;
+	}
+  .mdi-icon-error-container.visible {
+    text-align: center;
+    display: flex;
   }
 </style>

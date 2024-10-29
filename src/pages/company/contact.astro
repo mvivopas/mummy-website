@@ -2,6 +2,7 @@
 import ContactForm from '../../components/forms/ContactForm.astro';
 import Layout from '../../layouts/Page.astro';
 import { Container } from '@components/odyssey-theme';
+import { Icon } from "astro-icon/components";
 
 const seo = {
 	title: 'Contact | Astro Odyssey Theme',
@@ -13,10 +14,15 @@ const seo = {
 	<Container>
 		<section class="contact-hero__section">
 			<div class="contact-hero__text-section">
+				<div class="mdi-icons-container">
+					<Icon name="mdi:phone"/>
+					<Icon name="mdi:email-arrow-right"/>
+					<Icon name="mdi:calendar-check-outline"/>
+				</div>
 				<h1>Reserva Cita</h1>
 				<p>
                     Puedes contactar con el despacho para reservar cita a través de nuestro número de teléfono o
-                    correo electrónico.
+                    mediante el formulario de contacto.
                     <br></br>
                     Llamanos de lunes a viernes de 9:00 a 13:00.
                     <br></br>
@@ -27,6 +33,7 @@ const seo = {
 				</p>
 			</div>
 			<div class="col-2__container">
+				<h2>Formulario de contacto</h2>
 				<ContactForm />
 			</div>
 		</section>
@@ -35,24 +42,41 @@ const seo = {
 
 <style>
 	.contact-hero__section {
-		margin: 120px auto;
-		display: grid;
+		margin: 110px auto;
 		grid-template-columns: 1fr 1fr;
-		min-height: calc(90vh - var(--navbar-height));
-		gap: 3rem;
+		gap: 5rem;
+		padding: 3rem 0; /* Use padding to create space without height shifting */
+		max-height: 180vh; /* Optional, to cap the section's size */
+		
 	}
 	.contact-hero__text-section {
-		padding: 2rem;
+		padding: 3rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		background-color: var(--theme-surface-1);
+		text-align: center;
+		background-color: var(--theme-surface-3);
 		border-radius: var(--theme-shape-radius);
+		margin-bottom: 3rem;
 	}
 	.col-2__container {
+		width: 55%; /* Adjust width as needed (e.g., 60%, 70%) */
+		margin: 0 auto;
+		gap: 3rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		text-align: left;
+	}
+	.mdi-icons-container {
+		display: flex;
+		justify-content: center;
+		gap: 3rem; /* Space between icons */
+		margin-bottom: 1.5rem; /* Space below icons and above title */
+
+	}
+	[data-icon] {
+		font-size: 4rem;
 	}
 	@media (max-width: 768px) {
 		.contact-hero__section {
