@@ -14,7 +14,11 @@
 	--theme-surface-2: #6a4d34;
 	--theme-on-surface-2: #ffffff;
 
+	--theme-surface-3: #ffd8a8;
+
 	--theme-error-bg: #d45b5b;
+
+	--theme-on-hover: #b7edc4;
 
 	--theme-shape-radius: clamp(1rem, 2rem, 3rem);
 	--theme-button-border-radius: 0.5rem;
