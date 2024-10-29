@@ -1,5 +1,5 @@
 ---
-import { Button } from '@components/odyssey-theme';
+import { Icon } from "astro-icon/components";
 
 const apiKey = import.meta.env.WEB3FORMS_API_KEY;
 ---
@@ -33,15 +33,23 @@ const apiKey = import.meta.env.WEB3FORMS_API_KEY;
   <textarea name="message" id="message-textarea" placeholder="Danos algunos detalles sobre tu consulta..." required></textarea>
   <div class="error-message" id="message-error-message"></div>
 
-  <button type="submit" id="submit-btn" class="form-button">
-    Enviar correo
-  </button>
-
-  <section class="result-section hidden" id="result-section">
+  <section class="result-section" id="result-section">
     <div class="result-section-text" id="text-section">
+      <div class="mdi-icon-success-container" id="success-icon-container">
+        <!-- Success Icon -->
+        <Icon name="mdi:email-fast" id="success-icon" />
+      </div>
+      <div class="mdi-icon-error-container" id="error-icon-container">
+        <!-- Error Icon -->
+        <Icon name="mdi:alert-circle" id="error-icon" />
+      </div>
       <h3 id="result" class="result-message"></h3>
     </div>
   </section>
+
+  <button type="submit" id="submit-btn" class="form-button">
+    Enviar correo
+  </button>
 </form>
 
 <script is:inline>
@@ -52,6 +60,8 @@ const apiKey = import.meta.env.WEB3FORMS_API_KEY;
   const nameErrorMessage = document.getElementById('name-error-message');
   const phoneErrorMessage = document.getElementById('phone-error-message');
   const messageErrorMessage = document.getElementById('message-error-message');
+  const successIcon = document.getElementById('success-icon-container');
+  const errorIcon = document.getElementById('error-icon-container');
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -93,7 +103,7 @@ form.addEventListener('submit', function(e) {
   }
 
   if(!isValid) {
-    resultSection.classList.remove('hidden');
+    resultSection.classList.add('visible');
     textSection.classList.add('error');
     resultDiv.textContent = "Error al enviar el formulario. Por favor, revise los campos introducidos.";
     resultDiv.className = "result-message error";
@@ -104,7 +114,7 @@ form.addEventListener('submit', function(e) {
     // Show loading state
     resultDiv.textContent = "Enviando formulario de contacto..."
     resultDiv.className = "result-message loading";
-    resultSection.classList.remove('hidden');
+    resultSection.classList.add('visible');
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -122,10 +132,11 @@ form.addEventListener('submit', function(e) {
               <p>Nos pondremos en contacto contigo lo antes posible.</p>
             `;
           resultDiv.className = "result-message success";
+          successIcon.classList.add('visible');
         } else {
-          console.log(json.message)
           resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
           resultDiv.className = "result-message error";
+          errorIcon.classList.add('visible');
         }
       })
       .catch(error => {
@@ -182,29 +193,29 @@ form.addEventListener('submit', function(e) {
     color: var(--theme-on-surface-1); /* Set text color */
     padding: 1rem 1rem; /* Increase padding for a larger button */
     border-radius: 8px; /* Optional: round the corners */
+    margin-bottom: 0;
   }
   .form-button:hover {
     color: var(--theme-on-primary);
     background-color: var(--theme-primary-darker); /* Color on hover */
   }
   .result-section {
-		margin: var(--section-margin) auto;
-		display: grid;
 		grid-template-columns: 10fr 1fr;
-		min-height: calc(90vh - var(--navbar-height));
-		gap: 3rem;
+    padding: 0.75rem;
+    display: none; /* Initially hidden */
 	}
-  .result-section.hidden {
-    display: none; /* Initially hide this section */
+  .result-section.visible {
+    display: block; /* Initially hide this section */
   }
   .result-section-text.error {
 		background-color: var(--theme-error-bg);
 	}
 	.result-section-text {
-		padding: 2rem;
+		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+    text-align: center;
 		background-color: var(--theme-surface-1);
 		border-radius: var(--theme-shape-radius);
 	}
@@ -222,16 +233,33 @@ form.addEventListener('submit', function(e) {
     font-size: 1rem;
     color: var(--theme-on-surface-1);
   }
-
   .result-message.loading {
     color: var(--theme-on-surface-1);
   }
-
   .result-message.success {
     color: var(--theme-on-surface-1);
   }
-
   .result-message.error {
-    color: var(--theme-on-primary);
+    color: var(--theme-on-surface-1);
+  }
+  .mdi-icon-success-container {
+    display: none;
+    font-size: 2.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .mdi-icon-success-container.visible {
+      display: flex; /* Show the container when the icon is visible */
+      text-align: center;
+  }
+	.mdi-icon-error-container {
+		display: none;
+		justify-content: center;
+    font-size: 2.5rem;
+    display: none;
+	}
+  .mdi-icon-error-container.visible {
+    text-align: center;
+    display: flex;
   }
 </style>
