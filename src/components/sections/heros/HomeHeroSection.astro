@@ -65,9 +65,17 @@ import Stats from "../../cards/Stats.astro";
   		text-decoration: underline; /* Add underline on hover */
   		text-decoration-color: var(--theme-primary); /* Specify underline color */
 	}
-	@media (max-width: 768px) {
+	@media (max-width: 600px) {
 		.hero-section__section {
 			grid-template-columns: 1fr;
+			margin: 90px auto;
 		}
+		.hero-section__image {
+			display: none;
+		}
+		.stats-container {
+			align-items: center;
+		}
+
 	}
 </style>
