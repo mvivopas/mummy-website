@@ -1,33 +1,32 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 const { navData, rightMenu } = Astro.props;
 ---
 
 <script type="module">
   const bodyElement = document.querySelector('body');
-  const menuButton = document.querySelector('#menuButton')
+  const menuButton = document.querySelector('#menuButton');
   const navHeader = document.querySelector('#odysseyNavHeader');
   const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
   const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
   let scrollPosition = 0;
 
-  menuButton.addEventListener('click', toggleMenu)
+  // Toggle the full-screen menu
+  menuButton.addEventListener('click', toggleMenu);
 
   function toggleMenu() {
     menuButtonIconHam.toggleAttribute('hidden');
     menuButtonIconClose.toggleAttribute('hidden');
     
-    if (navHeader.hasAttribute('mobile-menu-open', true)) {
-      menuButton.title = "Open Main Menu"
-      // unlock scroll position
+    if (navHeader.hasAttribute('mobile-menu-open')) {
+      menuButton.title = "Open Main Menu";
       bodyElement.style.removeProperty('overflow');
       bodyElement.style.removeProperty('position');
       bodyElement.style.removeProperty('top');
       bodyElement.style.removeProperty('width');
       window.scrollTo(0, scrollPosition);
     } else {
-      menuButton.title = "Close Main Menu"
-      // lock scroll position
+      menuButton.title = "Close Main Menu";
       scrollPosition = window.pageYOffset;
       bodyElement.style.overflow = 'hidden';
       bodyElement.style.position = 'fixed';
@@ -41,29 +40,36 @@ const { navData, rightMenu } = Astro.props;
 
 <header id="odysseyNavHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
-  <a class="header-logo__link" href="/">
-    <slot name="logo">
-    </slot>
-  </a>
+    <a class="header-logo__link" href="/">
+      <slot name="logo"></slot>
+    </a>
+    <!-- Menu Button for Mobile -->
+    <button id="menuButton" class="menu-button" aria-label="Toggle Menu">
+      <Icon id="menuButtonIconHam" name="mdi:menu" />
+      <Icon id="menuButtonIconClose" name="mdi:close" hidden />
+    </button>
   </div>
+  
   <div class="header-nav__container">
     <slot name="nav">
-      {navData && <nav>
-        <ul>
-          {navData.map(navItem => (
-            (<li><a href={navItem.slug}><b>{navItem.title}</b></a></li>)
-          ))}
-        </ul>
-      </nav>}
+      {navData && (
+        <nav>
+          <ul>
+            {navData.map(navItem => (
+              <li><a href={navItem.slug}><b>{navItem.title}</b></a></li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </slot>
   </div>
   <div class="header-action-item__container">
-    <slot name="action-item">
-    </slot>
+    <slot name="action-item"></slot>
   </div>
 </header>
 
 <style>
+  /* Header Base Styles */
   header {
     position: fixed;
     top: 0;
@@ -96,8 +102,10 @@ const { navData, rightMenu } = Astro.props;
   .header-action-item__container {
     z-index: 100;
   }
+  
+  /* Navigation Styling */
   nav {
-  display: flex;
+    display: flex;
   }
   nav ul {
     margin: 0;
@@ -117,11 +125,32 @@ const { navData, rightMenu } = Astro.props;
   nav ul li a:hover {
     opacity: 1;
   }
+
+  /* Menu Button Styles for Mobile */
+  .menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Full-Screen Menu for Mobile */
   @media(max-width: 600px) {
-    #menuButton {
-      display: block;  
+    /* Ensure the action container aligns to the far right */
+    .header-action-item__container {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+    /* Menu button styling */
+    .menu-button {
+      display: block;
+      background-color: transparent;
+      color: var(--theme-on-bg);
+      margin-right: 1rem; /* Add spacing from the edge */
       z-index: 100;
     }
+    /* Full-Screen Menu Overlay */
     .header-nav__container {
       width: 100%;
       height: 100%;
@@ -134,16 +163,20 @@ const { navData, rightMenu } = Astro.props;
       inset: 0;
       z-index: 99;
     }
+
+    /* Show overlay when menu is open */
     header[mobile-menu-open] .header-nav__container {
       display: flex;
     }
+
+    /* Adjust navigation for mobile */
     header[mobile-menu-open] nav ul {
       align-items: center;
       flex-direction: column;
     }
-     header[mobile-menu-open] nav ul li {
-       font-size: var(--font-size-lg);
-       margin-bottom: 1rem;
-     }
+    header[mobile-menu-open] nav ul li {
+      font-size: var(--font-size-lg);
+      margin-bottom: 1rem;
+    }
   }
 </style>
