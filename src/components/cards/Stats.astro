@@ -1,7 +1,5 @@
 ---
 // Stats.astro
-import { Icon } from 'astro-icon/components';
-
 const { stats = [], id, classes = {} } = Astro.props;
 ---
 
@@ -9,7 +7,7 @@ const { stats = [], id, classes = {} } = Astro.props;
     {stats.map(({ amount, title, icon }) => (
     <div 
     class="stat-item p-4 text-center md:w-1/4 sm:w-1/2 w-full min-w-[300px] md:border-r md:last:border-none"
-    style="border-color: var(--theme-on-bg); border-right-width: 3px; height: 200px;"
+    style="border-color: var(--theme-on-bg); border-right-width: 3px;"
     >
  
         {amount && (
@@ -32,14 +30,16 @@ const { stats = [], id, classes = {} } = Astro.props;
     .stats-wrapper {
         display: flex;
         justify-content: center;
+        text-align: center;
         flex-wrap: wrap; /* Allows wrapping on smaller screens if needed */
-        gap: 1rem; /* Adds spacing between stats */
+        gap: 2rem; /* Adds spacing between stats */
     }
 
     /* Individual stat item styling */
     .stats-wrapper > div {
         flex: 1 1 45%; /* Each item takes up about half the width, but can shrink */
         text-align: center;
+        justify-content: center;
         min-width: 140px; /* Ensures a minimum width */
         padding: 1rem;
         border-right: 3px solid var(--theme-on-bg); /* Initial border size */
@@ -55,6 +55,8 @@ const { stats = [], id, classes = {} } = Astro.props;
         .stat-item {
             border: none;
             padding: 0.75rem; /* Less padding */
+            gap: 1rem;
+            max-width: 6rem;
         }
 }
 
@@ -64,7 +66,6 @@ const { stats = [], id, classes = {} } = Astro.props;
             flex: 1 1 45%; /* Each item still takes about half the width */
             border: none;
             padding: 0.5rem; /* Smaller padding for compact display */
-            margin-bottom: 1rem;
         }
     }
 
