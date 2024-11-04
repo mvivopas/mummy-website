@@ -1,16 +1,11 @@
 ---
+
 import { Icon } from "astro-icon/components";
 import ContentSection from "../sections/FeatureContentSection.astro";
+
 import type { FeatureItem } from "../../types";
 
 const features: Array<FeatureItem> = [
-//  {
-//    title: "Derecho de Familia",
-//    description:
-//      "Procedimiento de divorcio, división de bienes, custodia de los hijos, pención alimenticia.",
-//    icon: "mdi:family",
-//    link: "/landing-pages/derecho-familia",
-//  },
   {
     title: "Responsabilidad Civil",
     description:
@@ -38,26 +33,46 @@ const features: Array<FeatureItem> = [
       "Regulación de la sucesión mortis causa de las titularidades y relaciones jurídicas, tanto activas como pasivas, de una persona.",
     icon: "mdi:home-group",
     link: "/landing-pages/derecho-sucesorio",
-  }
+  },
 ];
+
 ---
 
 <ContentSection title="Areas de especialidad" id="features">
-  <ul class="grid max-w-3xl grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-auto">
-    {
-      features.map(({ title, description, icon, link }) => (
-        <li class="flex flex-col items-center gap-6 bg-offset p-8 rounded-lg shadow-lg">
-          <div class="size-16 rounded-full border-2 border-current p-3">
-            <Icon name={icon} class="size-full" />
-          </div>
-          <h3>
-            <a href={link} class="text-center font-extrabold text-lg hover:underline">
-              {title}
-            </a>
-          </h3>
-          <p class="text-center text-offset text-justify text-md">{description}</p>
-        </li>
-      ))
-    }
+  <ul class="grid max-w-3xl grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-auto gap-6">
+    {features.map(({ title, description, icon, link }) => (
+      <li class="flex flex-col items-center text-center bg-offset p-4 md:p-8 rounded-lg shadow-lg">
+        <div class="size-12 md:size-14 lg:size-16 flex items-center justify-center rounded-full border-2 border-current p-3 md:p-4">
+          <Icon name={icon} class="size-full" />
+        </div>
+        <h3 class="font-extrabold text-base md:text-lg lg:text-lg">
+          {title}
+        </h3>
+        <p class="text-sm md:text-md text-center text-offset">
+          {description}
+        </p>
+      </li>
+    ))}
   </ul>
 </ContentSection>
+
+<style>
+p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  letter-spacing: 0.5px; /* Optional */
+  font-size: var(--font-size-base);
+}
+
+@media (max-width: 600px) {
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    letter-spacing: 0.5px; /* Optional */
+    font-size: var(--font-size-sm);
+  }
+}
+
+</style>
