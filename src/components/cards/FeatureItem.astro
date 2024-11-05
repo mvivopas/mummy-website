@@ -45,8 +45,10 @@ const features: Array<FeatureItem> = [
         <div class="size-12 md:size-14 lg:size-16 flex items-center justify-center rounded-full border-2 border-current p-3 md:p-4">
           <Icon name={icon} class="size-full" />
         </div>
-        <h3 class="font-extrabold text-base md:text-lg lg:text-lg">
-          {title}
+        <h3>
+          <a href={link} class="font-extrabold text-base md:text-lg lg:text-lg hover:underline">
+            {title}
+          </a>
         </h3>
         <p class="text-sm md:text-md text-center text-offset">
           {description}
