@@ -1,15 +1,13 @@
 ---
 // Stats.astro
-import { Icon } from 'astro-icon/components';
-
 const { stats = [], id, classes = {} } = Astro.props;
 ---
 
 <div class="stats-wrapper">
     {stats.map(({ amount, title, icon }) => (
     <div 
-    class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[300px] text-center md:border-r md:last:border-none"
-    style="border-color: var(--theme-on-bg); border-right-width: 3px; height: 200px;"
+    class="stat-item p-4 text-center md:w-1/4 sm:w-1/2 w-full min-w-[300px] md:border-r md:last:border-none"
+    style="border-color: var(--theme-on-bg); border-right-width: 3px;"
     >
  
         {amount && (
@@ -30,10 +28,51 @@ const { stats = [], id, classes = {} } = Astro.props;
 
 <style>
     .stats-wrapper {
-		display: flex;
-		justify-content: center; /* Centers the stats horizontally */
-        text-align: left;
-		flex-wrap: wrap; /* Ensures that items wrap if necessary */
-		gap: 2rem; /* Optional: Adds spacing between the stats */
-	}
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap; /* Allows wrapping on smaller screens if needed */
+        gap: 1rem; /* Adds spacing between stats */
+    }
+
+    /* Individual stat item styling */
+    .stats-wrapper > div {
+        flex: 1 1 45%; /* Each item takes up about half the width, but can shrink */
+        text-align: center;
+        justify-content: center;
+        text-justify: inter-word;
+        hyphens: auto;
+        min-width: 150px; /* Ensures a minimum width */
+        padding: 1rem;
+        border-right: 3px solid var(--theme-on-bg); /* Initial border size */
+    }
+
+    /* Remove the border from the last item */
+    .stats-wrapper > div:last-child {
+        border-right: none;
+    }
+
+    /* Adjustments for medium screens */
+    @media (max-width: 768px) {
+        .stat-item {
+            border: none;
+            padding: 0.75rem; /* Less padding */
+            gap: 0.5rem;
+            max-width: 8rem;
+        }
+}
+
+    /* Adjustments for small screens */
+    @media (max-width: 600px) {
+        .stats-wrapper > div {
+            flex: 1 1 45%; /* Each item still takes about half the width */
+            border: none;
+            padding: 0.15rem; /* Smaller padding for compact display */
+            text-align: center;
+            justify-content: center;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
+    }
+
 </style>
