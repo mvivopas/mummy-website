@@ -1,59 +1,126 @@
 ---
-import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
 import TextSection from '../../components/sections/TextSection.astro'
 
 const seo = {
-	title: 'Aina Pascual | Derecho de Responsabilidad Civil',
-	description: 'Aina Pascual | Derecho de Responsabilidad Civil',
+    title: 'Aina Pascual | Derecho de Responsabilidad Civil',
+    description: 'Aina Pascual | Derecho de Responsabilidad Civil',
 };
 ---
 
 <Layout {seo}>
-	<TextAndImageHero reversed>
-		<div slot="text-container">
-			<h1>Responsabilidad Civil</h1>
-      <em>
-				Rama del derecho que regula la obligación legal de una persona de reparar los daños
-				y perjuicios que haya causado a otra, ya sea por una acción u omisión. Garantizando
-				que quien sufra un daño, ya sea físico, material o moral, reciba una compensación adecuada.
-      </em>
+    <TextAndImageHero reversed class="responsive-hero">
+        <div slot="text-container" class="hero-text">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl mb-4">Responsabilidad Civil</h1>
+            <em class="text-sm md:text-base lg:text-lg">
+                Rama del derecho que regula la obligación legal de una persona de reparar los daños
+                y perjuicios que haya causado a otra, ya sea por una acción u omisión. Garantizando
+                que quien sufra un daño, ya sea físico, material o moral, reciba una compensación adecuada.
+            </em>
+        </div>
+		<div slot="image-container" class="hero-image-wrapper">
+			<picture slot="image-container" class="hero-image">
+				<img
+					src="/assets/images/areas_especialidad/derecho-civil.jpeg"
+					alt="Astro Odyssey"
+					loading="lazy"
+					class="w-full h-auto object-cover rounded-lg shadow-md"
+				/>
+			</picture>
 		</div>
-		<picture slot="image-container">
-			<img
-				src="/assets/images/areas_especialidad/derecho-civil.jpeg"
-				alt="Astro Odyssey"
-				loading="lazy"
-			/>
-		</picture>
-	</TextAndImageHero>
+    </TextAndImageHero>
 
-	<TextSection>
+    <TextSection class="responsive-text-section">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl mb-6">Principales procedimientos</h2>
+        
+        <div class="space-y-6">
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Reclamación por daños y perjuicios</h3>
+                <p class="text-sm md:text-base">
+                    Proceso judicial en el que una persona afectada solicita compensación económica por los daños 
+                    ocasionados por otra persona o entidad. Ejemplos incluyen accidentes de tráfico, lesiones en espacios 
+                    públicos, accidentes laborales, difamación y daños a la propiedad.
+                </p>
+            </div>
 
-		<h2>Principales procedimientos</h2>
-		<h3>Reclamación por daños y perjuicios</h3>
-		<p>
-			Proceso judicial en el que una persona afectada solicita compensación económica por los daños 
-			ocasionados por otra persona o entidad. Ejemplos incluyen accidentes de tráfico, lesiones en espacios 
-			públicos, accidentes laborales, difamación y daños a la propiedad.
-		</p>
-		<h3>Negligencia profesional</h3>
-		<p>
-			Los profesionales, como médicos, abogados o arquitectos, pueden incurrir en responsabilidad civil si
-			sus acciones u omisiones causan un perjuicio a sus clientes o a terceros. Es necesario
-			iniciar un procedimiento para cuantificar y reclamar los daños sufridos, demostrando que ha habido
-			negligencia en el ejercicio de la profesión.
-		</p>
-		<h3>Responsabilidad Contractual</h3>
-		<p>
-			Sanción convenida por las partes en caso de una infracción o incumplimiento de un deber fijado en un 
-			contrato. Podría ser el caso en que un propietario contrata a un constructor para realizar una obra y 
-			el constructor no cumple con las especificaciones acordadas, resultando en una construcción defectuosa. 
-			En este caso, el propietario puede reclamar daños por el incumplimiento del contrato.
-		</p>
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Negligencia profesional</h3>
+                <p class="text-sm md:text-base">
+                    Los profesionales, como médicos, abogados o arquitectos, pueden incurrir en responsabilidad civil si
+                    sus acciones u omisiones causan un perjuicio a sus clientes o a terceros. Es necesario
+                    iniciar un procedimiento para cuantificar y reclamar los daños sufridos, demostrando que ha habido
+                    negligencia en el ejercicio de la profesión.
+                </p>
+            </div>
 
-
-	</TextSection>
-
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Responsabilidad Contractual</h3>
+                <p class="text-sm md:text-base">
+                    Sanción convenida por las partes en caso de una infracción o incumplimiento de un deber fijado en un 
+                    contrato. Podría ser el caso en que un propietario contrata a un constructor para realizar una obra y 
+                    el constructor no cumple con las especificaciones acordadas, resultando en una construcción defectuosa. 
+                    En este caso, el propietario puede reclamar daños por el incumplimiento del contrato.
+                </p>
+            </div>
+        </div>
+    </TextSection>
 </Layout>
+
+<style>
+    .responsive-hero {
+        @apply px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16;
+    }
+
+    .hero-text {
+        @apply max-w-prose mx-auto;
+    }
+
+    .hero-image {
+        @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
+    }
+
+    .responsive-text-section {
+        @apply px-4 py-4 md:px-6 lg:px-8 py-8 md:py-12 max-w-4xl mx-auto;
+    }
+
+    .procedure-item {
+        @apply bg-white p-4 md:p-6 rounded-lg shadow-sm;
+    }
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+		.responsive-hero {
+            @apply px-0 py-4; /* Remove horizontal padding on mobile */
+        }
+        .text-and-image__section {
+            margin: 1rem 2rem;
+            min-height: auto;
+			padding: 1rem 0;
+            gap: 0.5rem;
+        }
+        
+		:global(.text__section) {
+            margin: 0.75rem auto !important; /* Reduced margin */
+        }
+
+        .hero-text {
+            padding: 1rem 0;
+        }
+        
+		.hero-image-wrapper {
+            @apply mt-4 w-full max-w-none; /* Full width on mobile */
+        }
+
+		.procedure-item p {
+			text-align: justify;
+			text-justify: inter-word;
+			hyphens: auto;
+			letter-spacing: 0.5px; /* Optional */
+			font-size: var(--font-size-sm);
+		}
+		.procedure-item h3 {
+			text-align: center;
+			font-size: var(--font-size-md);
+		}
+    }
+</style>
