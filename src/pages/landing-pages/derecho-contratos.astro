@@ -1,79 +1,158 @@
 ---
-import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
 import TextSection from '../../components/sections/TextSection.astro'
 
 const seo = {
-	title: 'Aina Pascual | Derecho de Obligaciones y Contratos',
-	description: 'Aina Pascual | Derecho de Obligaciones y Contratos',
+    title: 'Aina Pascual | Derecho de Obligaciones y Contratos',
+    description: 'Aina Pascual | Derecho de Obligaciones y Contratos',
 };
 ---
 
 <Layout {seo}>
-	<TextAndImageHero reversed>
-		<div slot="text-container">
-			<h1>Derecho Contractual</h1>
-			<em>
-				Regulación de los acuerdos y compromisos asumidos entre personas, empresas y otras entidades. 
-				Este ámbito establece las normas sobre cómo se crean, modifican, cumplen y, en su caso, se 
-				rescinden las obligaciones derivadas de contratos y otras fuentes legales.
-	        </em>
-		</div>
-		<picture slot="image-container">
-			<img
-				src="/assets/images/areas_especialidad/derecho-contratos.jpg"
-				alt="Astro Odyssey"
-				loading="lazy"
-			/>
-		</picture>
-	</TextAndImageHero>
+    <TextAndImageHero reversed class="responsive-hero">
+        <div slot="text-container" class="hero-text">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl mb-4">Derecho Contractual</h1>
+            <em class="text-sm md:text-base lg:text-lg">
+                Regulación de los acuerdos y compromisos asumidos entre personas, empresas y otras entidades. 
+                Este ámbito establece las normas sobre cómo se crean, modifican, cumplen y, en su caso, se 
+                rescinden las obligaciones derivadas de contratos y otras fuentes legales.
+            </em>
+        </div>
+        <div slot="image-container" class="hero-image-wrapper">
+            <picture class="hero-image">
+                <img
+                    src="/assets/images/areas_especialidad/derecho-contratos.jpg"
+                    alt="Astro Odyssey"
+                    loading="lazy"
+                    class="w-full h-auto object-cover"
+                />
+            </picture>
+        </div>
+    </TextAndImageHero>
 
-	<TextSection>
+    <TextSection class="responsive-text-section">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl mb-6">Principales procedimientos</h2>
+        
+        <div class="space-y-6">
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Redacción y revisión de contratos</h3>
+                <p class="text-sm md:text-base">
+                    Antes de firmar un contrato, es esencial que las partes se aseguren de que todas las condiciones,
+                    derechos y obligaciones estén claramente detalladas. La revisión y redacción de contratos es un 
+                    procedimiento preventivo que ayuda a evitar conflictos futuros. Asegurar que el contrato sea 
+                    legalmente vinculante, claro y favorable es la mejor manera de minimizar riesgos de interpretaciones
+                    amibiguas o vacíos legales.
+                </p>
+            </div>
 
-		<h2>Principales procedimientos</h2>
-		<h3>Redacción y revisión de contratos</h3>
-		<p>
-			Antes de firmar un contrato, es esencial que las partes se aseguren de que todas las condiciones,
-			derechos y obligaciones estén claramente detalladas. La revisión y redacción de contratos es un 
-			procedimiento preventivo que ayuda a evitar conflictos futuros. Asegurar que el contrato sea 
-			legalmente vinculante, claro y favorable es la mejor manera de minimizar riesgos de interpretaciones
-			amibiguas o vacíos legales.
-		</p>
-		<h3>Cumplimiento de obligaciones</h3>
-		<p>
-			Este procedimiento busca asegurar que las partes cumplan con lo acordado en un contrato. Si una de 
-			las partes intenta incumplir su obligación, como puede ser la entrega de un bien o el pago de una 
-			suma de dinero, la otra parte puede exigir su cumplimiento mediante acciones judiciales.
-		</p>
-		<h3>Modificación de contratos</h3>
-		<p>
-			Las partes pueden desear modificar un contrato debido a cambios en las circunstancias iniciales. 
-			Esta modificación puede incluir cambios en los plazos, condiciones de pago o cualquier otra cláusula 
-			contractual. Para que la modificación tenga validez, ambas partes deben estar de acuerdo y reflejarlo 
-			formalmente.
-		</p>
-		<h3>Interpretación de clausulas contractuales</h3>
-		<p>
-			Cuando surge una discrepancia sobre el significado o alcance de alguna cláusula del contrato, es posible 
-			acudir a los tribunales para una interpretación judicial. Este procedimiento ayuda a aclarar los derechos 
-			y obligaciones de cada parte, conforme a la intención original del contrato. Contar con un abogado en 
-			estos casos es esencial para presentar una interpretación favorable y argumentada.
-		</p>
-		<h3>Incumplimiento contractual</h3>
-		<p>
-			Si una de las partes incumple con lo acordado en un contrato, la parte afectada puede reclamar daños y 
-			perjuicios. La reclamación de daños busca compensar a la parte perjudicada por las pérdidas económicas 
-			derivadas del incumplimiento. Es importante contar con asesoramiento legal para determinar la viabilidad 
-			de la reclamación y cuantificar los daños sufridos.
-		</p>
-		<h3>Ejecutoriedad de garantias</h3>
-		<p>
-			En algunos contratos, las partes establecen garantías (fianzas, avales, prendas, hipotecas) para asegurar 
-			el cumplimiento de las obligaciones. Si una de las partes incumple, la otra puede iniciar el proceso para 
-			ejecutar esas garantías y recuperar lo adeudado. Este procedimiento requiere cumplir con requisitos legales 
-			específicos, y un abogado puede ayudar a llevar a cabo la ejecución de las garantías sin contratiempos.
-		</p>
-	</TextSection>
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Cumplimiento de obligaciones</h3>
+                <p class="text-sm md:text-base">
+                    Este procedimiento busca asegurar que las partes cumplan con lo acordado en un contrato. Si una de 
+                    las partes intenta incumplir su obligación, como puede ser la entrega de un bien o el pago de una 
+                    suma de dinero, la otra parte puede exigir su cumplimiento mediante acciones judiciales.
+                </p>
+            </div>
 
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Modificación de contratos</h3>
+                <p class="text-sm md:text-base">
+                    Las partes pueden desear modificar un contrato debido a cambios en las circunstancias iniciales. 
+                    Esta modificación puede incluir cambios en los plazos, condiciones de pago o cualquier otra cláusula 
+                    contractual. Para que la modificación tenga validez, ambas partes deben estar de acuerdo y reflejarlo 
+                    formalmente.
+                </p>
+            </div>
+
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Interpretación de clausulas contractuales</h3>
+                <p class="text-sm md:text-base">
+                    Cuando surge una discrepancia sobre el significado o alcance de alguna cláusula del contrato, es posible 
+                    acudir a los tribunales para una interpretación judicial. Este procedimiento ayuda a aclarar los derechos 
+                    y obligaciones de cada parte, conforme a la intención original del contrato. Contar con un abogado en 
+                    estos casos es esencial para presentar una interpretación favorable y argumentada.
+                </p>
+            </div>
+
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Incumplimiento contractual</h3>
+                <p class="text-sm md:text-base">
+                    Si una de las partes incumple con lo acordado en un contrato, la parte afectada puede reclamar daños y 
+                    perjuicios. La reclamación de daños busca compensar a la parte perjudicada por las pérdidas económicas 
+                    derivadas del incumplimiento. Es importante contar con asesoramiento legal para determinar la viabilidad 
+                    de la reclamación y cuantificar los daños sufridos.
+                </p>
+            </div>
+
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Ejecutoriedad de garantias</h3>
+                <p class="text-sm md:text-base">
+                    En algunos contratos, las partes establecen garantías (fianzas, avales, prendas, hipotecas) para asegurar 
+                    el cumplimiento de las obligaciones. Si una de las partes incumple, la otra puede iniciar el proceso para 
+                    ejecutar esas garantías y recuperar lo adeudado. Este procedimiento requiere cumplir con requisitos legales 
+                    específicos, y un abogado puede ayudar a llevar a cabo la ejecución de las garantías sin contratiempos.
+                </p>
+            </div>
+        </div>
+    </TextSection>
 </Layout>
+
+<style>
+    .responsive-hero {
+        @apply px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16;
+    }
+
+    .hero-text {
+        @apply max-w-prose mx-auto;
+    }
+
+    .hero-image {
+        @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
+    }
+
+    .responsive-text-section {
+        @apply px-4 py-4 md:px-6 lg:px-8 py-8 md:py-12 max-w-4xl mx-auto;
+    }
+
+    .procedure-item {
+        @apply bg-white p-4 md:p-6 rounded-lg shadow-sm;
+    }
+
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+        .responsive-hero {
+            @apply px-0 py-4; /* Remove horizontal padding on mobile */
+        }
+        .text-and-image__section {
+            margin: 1rem 2rem;
+            min-height: auto;
+            padding: 1rem 0;
+            gap: 0.5rem;
+        }
+        
+        :global(.text__section) {
+            margin: 0.75rem auto !important; /* Reduced margin */
+        }
+
+        .hero-text {
+            padding: 1rem 0;
+        }
+        
+        .hero-image-wrapper {
+            @apply mt-4 w-full max-w-none; /* Full width on mobile */
+        }
+
+        .procedure-item p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            letter-spacing: 0.5px; /* Optional */
+            font-size: var(--font-size-sm);
+        }
+        .procedure-item h3 {
+            text-align: center;
+            font-size: var(--font-size-md);
+        }
+    }
+</style>
