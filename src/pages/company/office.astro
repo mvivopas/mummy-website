@@ -20,7 +20,7 @@ const seo = {
 				Para reservar cita pulsa <a class="highlighted-text" href="/company/contact"> <u>aquí</u></a>.
 			</h4>
 		</div>
-    <picture slot="image-container">
+    <picture slot="image-container" class="hero-image">
       <img
         src="/assets/images/home/office-mock.jpg"
         alt="Astro Odyssee"
@@ -38,13 +38,21 @@ const seo = {
 	}
 	.main-text {
 	font-weight: bold; /* Optional: make the text bold */
-}
+	}
 	.highlighted-text {
 	color: var(--theme-primary);
 	font-weight: bold; /* Optional: make the text bold */
-}
+	}
 	.reserve-link:hover {
 	text-decoration: underline;
 	cursor: pointer;
-}
+	}
+    .hero-image {
+        @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
+    }
+    @media (max-width: 768px) {
+		.text-container {
+			margin: 75px auto;
+		}
+	}
 </style>
