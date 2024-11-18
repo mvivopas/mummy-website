@@ -1,25 +1,23 @@
 ---
-import { TextSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import HeroSection from '../../components/sections/heros/HeroSection.astro';
-import FeatureContentSection from "../../components/sections/FeatureContentSection.astro";
 
 const seo = {
-	title: 'Aina Pascual | Despacho',
-	description: 'Ubicación Despacho',
+  title: 'Aina Pascual | Despacho',
+  description: 'Ubicación Despacho',
 };
 ---
 
 <Layout {seo}>
-	<HeroSection>
-		<div slot="text-container" class="text-container">
-			<h1>Dónde encontrarnos</h1>
-			<h4>
-				Despacho ubicado en Ciutadella de Menorca, en el <a class="highlighted-text" href="https://maps.app.goo.gl/AoSffsogciuF7u218"> <u>número 20 de la calle Mallorca</u> </a>. <br></br>
-				Estamos abiertos al público de <span class="highlighted-text"> lunes a viernes de 9:00 a 13:00</span> y por la tarde para citas concertadas. <br></br>
-				Para reservar cita pulsa <a class="highlighted-text" href="/company/contact"> <u>aquí</u></a>.
-			</h4>
-		</div>
+  <HeroSection>
+    <div slot="text-container" class="text-container">
+      <h1>Dónde encontrarnos</h1>
+      <h4>
+        Despacho ubicado en Ciutadella de Menorca, en el <a class="highlighted-text" href="https://maps.app.goo.gl/AoSffsogciuF7u218"> <u>número 20 de la calle Mallorca</u></a><br><br>
+        Estamos abiertos al público de <span class="highlighted-text"> lunes a viernes de 9:00 a 13:00</span> y por la tarde para citas concertadas<br><br>
+        Para reservar cita pulsa <a class="highlighted-text" href="/company/contact"> <u>aquí</u></a>.
+      </h4>
+    </div>
     <picture slot="image-container" class="hero-image">
       <img
         src="/assets/images/home/office-mock.jpg"
@@ -27,32 +25,49 @@ const seo = {
         id="home-hero-image"
       />
     </picture>
-	</HeroSection>
+    <div slot="image-container" class="hero-image-mobile">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9137.69360203076!2d3.834541340159084!3d39.99966155792951!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12be03f7975bdcb3%3A0x626b40ff83c10460!2sCarrer%20de%20Mallorca%2C%2020%2C%2007760%20Ciutadella%20de%20Menorca%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1730044818023!5m2!1ses!2ses"
+        width="320"
+        height="320"
+        style="border:0; border-radius: 8px;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </HeroSection>
 </Layout>
 
 <style>
 	.text-container {
-	margin: 120px auto;
-	max-width: 600px; /* Limit the width of the text */
-	margin-right: 2rem; /* Add some space between the text and image */
+	  margin: 80px auto; /* Reduced margin */
+	  max-width: 600px; /* Limit the width of the text */
+	  margin-right: 1.5rem; /* Reduced margin */
 	}
 	.main-text {
-	font-weight: bold; /* Optional: make the text bold */
+	  font-weight: bold; /* Optional: make the text bold */
 	}
 	.highlighted-text {
-	color: var(--theme-primary);
-	font-weight: bold; /* Optional: make the text bold */
+	  color: var(--theme-primary);
+	  font-weight: bold; /* Optional: make the text bold */
 	}
 	.reserve-link:hover {
-	text-decoration: underline;
-	cursor: pointer;
+	  text-decoration: underline;
+	  cursor: pointer;
 	}
-    .hero-image {
-        @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
-    }
-    @media (max-width: 768px) {
-		.text-container {
-			margin: 75px auto;
-		}
+	.hero-image {
+	  @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
+	}
+	.hero-image-mobile {
+	  @apply block md:hidden max-w-md mx-auto mt-1 mb-16; /* More margin at the bottom */
+	}
+	.hero-image-mobile iframe {
+	  @apply w-full rounded-lg; /* Rounded borders */
+	}
+	@media (max-width: 768px) {
+	  .text-container {
+		margin-bottom: 15px;
+	  }
 	}
 </style>
