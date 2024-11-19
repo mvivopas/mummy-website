@@ -20,7 +20,7 @@
 
 	--theme-on-hover: #b7edc4;
 
-	--theme-shape-radius: clamp(1rem, 2rem, 3rem);
+	--theme-shape-radius: clamp(1rem, 1rem, 1rem);
 	--theme-button-border-radius: 0.5rem;
 
 	/* Theme Transition */

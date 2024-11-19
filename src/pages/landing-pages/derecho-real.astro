@@ -23,7 +23,7 @@ const seo = {
         <div slot="image-container" class="hero-image-wrapper">
             <picture class="hero-image">
                 <img
-                    src="/assets/images/areas_especialidad/derecho-real.jpg"
+                    src="/assets/images/areas_especialidad/derecho-real.jpeg"
                     alt="Astro Odyssey"
                     loading="lazy"
                     class="w-full h-auto object-cover"
@@ -81,23 +81,18 @@ const seo = {
     .responsive-hero {
         @apply px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16;
     }
-
     .hero-text {
         @apply max-w-prose mx-auto;
     }
-
     .hero-image {
-        @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
-    }
-
+        @apply hidden md:block max-w-lg mx-auto mt-6 md:mt-0;
+    } 
     .responsive-text-section {
         @apply px-4 py-4 md:px-6 lg:px-8 py-8 md:py-12 max-w-4xl mx-auto;
     }
-
     .procedure-item {
         @apply bg-white p-4 md:p-6 rounded-lg shadow-sm;
     }
-
     /* Mobile-specific adjustments */
     @media (max-width: 768px) {
         .responsive-hero {
