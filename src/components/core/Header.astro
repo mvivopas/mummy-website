@@ -51,7 +51,13 @@ const { navData, rightMenu } = Astro.props;
         <nav>
           <ul>
             {navData.map(navItem => (
-              <li><a href={navItem.slug}><b>{navItem.title}</b></a></li>
+              <li>
+                {navItem.title === 'Contacta' ? (
+                  <a href={navItem.slug} class="nav-button">{navItem.title}</a>
+                ) : (
+                  <a href={navItem.slug}><b>{navItem.title}</b></a>
+                )}
+              </li>
             ))}
           </ul>
         </nav>
@@ -124,6 +130,7 @@ const { navData, rightMenu } = Astro.props;
   }
   nav ul li a:hover {
     opacity: 1;
+    text-decoration: underline;
   }
 
   /* Menu Button Styles for Mobile */
@@ -132,6 +139,21 @@ const { navData, rightMenu } = Astro.props;
     background: none;
     border: none;
     cursor: pointer;
+  }
+  /* New styles for nav button */
+  nav ul li .nav-button {
+    background-color: var(--theme-primary);
+    color: var(--theme-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  nav ul li .nav-button:hover {
+    background-color: var(--theme-primary-variant);
+    color: var(--theme-primary);
   }
 
   /* Full-Screen Menu for Mobile */
@@ -183,6 +205,10 @@ const { navData, rightMenu } = Astro.props;
     header[mobile-menu-open] nav ul li {
       font-size: var(--font-size-lg);
       margin-bottom: 1rem;
+    }
+    header[mobile-menu-open] nav ul li .nav-button {
+      margin-bottom: 1rem;
+      display: inline-block;
     }
   }
 </style>
