@@ -10,44 +10,38 @@ const seo = {
 
 <Layout seo={seo}>
   <TextSection narrow>
-    <h1>De donde vengo</h1>
 
     <p>
       Licenciada en Derecho por la Universidad Central de Barcelona en el año <span class="highlighted-text">1987</span>. 
     </p>
 
     <p>
-      Durante los primeros años de profesión, trabajé cómo asociada en un despacho en <span class="highlighted-text">Barcelona</span>,
-      especializado en el ámbito del <span class="highlighted-text">Derecho Civil y Mercantil</span>.     
+      Los primeros años de profesión, trabajé cómo pasante en el <span class="highlighted-text">despacho del abogado civilista Francisco Pou Serradell</span>.
+      Posteriormente, me incorporé cómo <span class="highlighted-text">letrada asociada</span> a un despacho profesiónal especializado en el ámbito civil y
+      mercantil, donde <span class="highlighted-text">colaboré con los abogados Luís Sala Torregosa, Miguel Rosa y Sala y Elisabet?</span>. 
     </p>
 
     <p>
-      Cinco años después, en <span class="highlighted-text">1992</span>, abrí <span class="highlighted-text">mi propio despacho</span>
-      en Ciutadella de Menorca, especializado en Derecho Civil en el ámbito de las <span class="highlighted-text">Islas Baleares</span>.
+      En <span class="highlighted-text">1992</span>, establecí un despacho profesional en
+      <span class="highlighted-text"> Ciutadella de Menorca</span>, dedicado exclusivamente al ámbito civil en territorio de las <span class="highlighted-text">Islas Baleares</span>.
     </p>
 
     <p>
-      Han pasado <span class="highlighted-text">más de 35 años</span> desde que empecé a ejercer la abogacia y estoy orgullosa de haber podido 
+      Han pasado <span class="highlighted-text">más de 35 años</span> desde que empecé a ejercer la abogacia y estoy satisfecha de haber podido 
       <span class="highlighted-text">ayudar a cientos de personas, empresas y entidades a resolver sus problemas legales</span>.
-      Durante este viaje he tenido la oportunidad de trabajar en una gran variedad
-      de casos en ámbitos muy diversos, lo que me ha permitido especializarme en diferentes áreas del derecho. Las principales ramas del
-      derecho en las que trabajo son el Derecho de <span class="highlighted-text">Responsabilidad Civil</span>, 
-      <span class="highlighted-text">Sucesorio</span>, <span class="highlighted-text">Contractual</span> y <span class="highlighted-text">Real</span>.
+      Durante este viaje he tenido la oportunidad de trabajar en diversos ámbitos del derecho civil, siendo las principales ramas de
+      especialidad la <span class="highlighted-text">Responsabilidad Civil</span>, 
+      <span class="highlighted-text">Derecho Sucesorio</span>, <span class="highlighted-text">Derecho Contractual y de Obligaciones</span> y 
+      <span class="highlighted-text">Propiedades y Derechos Reales</span>.
     </p>
 
     <p>
-      Además de formarme a partir de la experiencia del ejercicio de la abogacía, he asistido a conferencias, cursos y seminarios.
-      Hace unos años, ya con una amplia experiencia en el ejercicio de la abogacía, decidí cursar un 
-      <span class="highlighted-text">Máster en Derecho de Responsabilidad por daños y prejuicios</span> en la Universidad de X.
+      Además de formarme a partir de la experiencia del ejercicio de la abogacía, he intentado <span class="highlighted-text">mantener una formación continua y actualizada</span>.
+      Cómo miembro de la Sociedad Española de Abogados de Responsabilidad Civil y Seguro y del Ilustre Colegio de Abogados de las Islas Baleares,
+      he asistido a conferencias y seminarios especializados en responsabilidad civil. En 2020, ya con una amplia experiencia en el 
+      ejercicio de la abogacía, decidí cursar un <span class="highlighted-text">Máster en Derecho de Responsabilidad por daños y prejuicios</span> 
+      en la Universidad de Granada.
     </p>
-
-    <h2> Conferencias y Seminarios </h2>
-    <li>
-      Element 1
-    </li>
-    <li>
-      Element 2
-    </li>
 
   </TextSection>
 </Layout>
@@ -57,13 +51,11 @@ const seo = {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
-
   p {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.75;
     margin-bottom: 1.5rem;
   }
-
   .bold-text {
     font-weight: bold;
   }
@@ -71,5 +63,9 @@ const seo = {
     color: var(--theme-primary);
     font-weight: bold;
   }
-
+	@media (max-width: 768px) {
+	  p {
+      font-size: 0.9rem;
+	  }
+	}
 </style>

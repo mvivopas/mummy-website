@@ -29,16 +29,17 @@ const { reversed } = Astro.props;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
-		gap: 1rem;
+		gap: 0rem;
 	}
 	.text-and-image__section--reversed .text-and-image__text {
 		order: 2;
 	}
 	.text-and-image__text {
-		padding: 2rem 0;
+		padding: 1rem 0;
 		justify-self: center;
 		text-align: justify;
-		max-width: 25rem;
+		max-width: 27rem;
+		margin-left: 0rem;
 	}
 	.text-and-image__image :global(img) {
 		width: 100%;
