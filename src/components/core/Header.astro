@@ -1,58 +1,147 @@
 ---
 import { Icon } from 'astro-icon/components';
+
 const { navData, rightMenu } = Astro.props;
+
+// Add specialties data
+const specialtyAreas = [
+  { title: "Responsabilidad Civil", slug: "/landing-pages/derecho-civil" },
+  { title: "Propiedad y derecho real", slug: "/landing-pages/derecho-real" },
+  { title: "Derecho Sucesorio", slug: "/landing-pages/derecho-sucesorio" },
+  { title: "Derecho Contractual y Obligaciones", slug: "/landing-pages/derecho-contratos" }
+];
+
+// Add the specialty menu item to navData for mobile only
+const mobileNavData = [
+  ...navData.filter(item => item.title !== 'Contacta'),
+  { title: 'Áreas de Especialidad', isSubmenu: true },
+  ...navData.filter(item => item.title === 'Contacta')
+];
 ---
 
-<script type="module">
-  const bodyElement = document.querySelector('body');
-  const menuButton = document.querySelector('#menuButton');
-  const navHeader = document.querySelector('#odysseyNavHeader');
-  const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
-  const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
-  let scrollPosition = 0;
-
-  // Toggle the full-screen menu
-  menuButton.addEventListener('click', toggleMenu);
-
-  function toggleMenu() {
-    menuButtonIconHam.toggleAttribute('hidden');
-    menuButtonIconClose.toggleAttribute('hidden');
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const bodyElement = document.querySelector('body');
+    const menuButton = document.querySelector('#menuButton');
+    const navHeader = document.querySelector('#odysseyNavHeader');
+    const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
+    const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
+    const specialtyButton = document.querySelector('#specialtyButton');
+    const specialtySubmenu = document.querySelector('#specialtySubmenu');
+    const specialtyArrow = document.querySelector('#specialtyArrow');
     
-    if (navHeader.hasAttribute('mobile-menu-open')) {
-      menuButton.title = "Open Main Menu";
-      bodyElement.style.removeProperty('overflow');
-      bodyElement.style.removeProperty('position');
-      bodyElement.style.removeProperty('top');
-      bodyElement.style.removeProperty('width');
-      window.scrollTo(0, scrollPosition);
-    } else {
-      menuButton.title = "Close Main Menu";
-      scrollPosition = window.pageYOffset;
-      bodyElement.style.overflow = 'hidden';
-      bodyElement.style.position = 'fixed';
-      bodyElement.style.top = `-${scrollPosition}px`;
-      bodyElement.style.width = '100%';
+    let scrollPosition = 0;
+    let isSubmenuOpen = false;
+
+    function closeSubmenu() {
+      if (specialtySubmenu && specialtyArrow) {
+        specialtySubmenu.classList.remove('show-submenu');
+        specialtyArrow.classList.remove('rotate');
+        isSubmenuOpen = false;
+        if (specialtyButton) {
+          specialtyButton.classList.remove('active');
+        }
+      }
     }
-    
-    navHeader.toggleAttribute('mobile-menu-open');
-  }
-</script>  
 
-<header id="odysseyNavHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
+    function toggleMenu() {
+      if (!menuButton || !menuButtonIconHam || !menuButtonIconClose || !navHeader || !bodyElement) return;
+
+      menuButtonIconHam.toggleAttribute('hidden');
+      menuButtonIconClose.toggleAttribute('hidden');
+      
+      if (navHeader.hasAttribute('mobile-menu-open')) {
+        menuButton.title = "Open Main Menu";
+        bodyElement.style.removeProperty('overflow');
+        bodyElement.style.removeProperty('position');
+        bodyElement.style.removeProperty('top');
+        bodyElement.style.removeProperty('width');
+        window.scrollTo(0, scrollPosition);
+        closeSubmenu();
+      } else {
+        menuButton.title = "Close Main Menu";
+        scrollPosition = window.pageYOffset;
+        bodyElement.style.overflow = 'hidden';
+        bodyElement.style.position = 'fixed';
+        bodyElement.style.top = `-${scrollPosition}px`;
+        bodyElement.style.width = '100%';
+      }
+      
+      navHeader.toggleAttribute('mobile-menu-open');
+    }
+
+    function toggleSubmenu(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      if (!specialtySubmenu || !specialtyArrow) return;
+      
+      isSubmenuOpen = !isSubmenuOpen;
+      specialtySubmenu.classList.toggle('show-submenu');
+      specialtyArrow.classList.toggle('rotate');
+      specialtyButton.classList.toggle('active');
+    }
+
+    if (menuButton) {
+      menuButton.addEventListener('click', toggleMenu);
+    }
+
+    if (specialtyButton) {
+      specialtyButton.addEventListener('click', toggleSubmenu);
+    }
+
+    // Close submenu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (isSubmenuOpen && specialtyButton && !specialtyButton.contains(event.target)) {
+        closeSubmenu();
+      }
+    });
+
+    // Handle window resize
+    let windowWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      const newWidth = window.innerWidth;
+      if (newWidth !== windowWidth) {
+        windowWidth = newWidth;
+        if (newWidth > 600) {
+          if (navHeader.hasAttribute('mobile-menu-open')) {
+            toggleMenu();
+          }
+          closeSubmenu();
+        }
+      }
+    });
+  });
+</script>
+
+<header id="odysseyNavHeader" class={`${rightMenu ? "header--right" : ``}`.trim()}>
   <div class="header-logo-menu__container">
     <a class="header-logo__link" href="/">
       <slot name="logo"></slot>
     </a>
   </div>
-  
   <div class="header-nav__container">
     <slot name="nav">
       {navData && (
         <nav>
-          <ul>
-            {navData.map(navItem => (
+          <ul class="main-menu">
+            {mobileNavData.map(navItem => (
               <li>
-                {navItem.title === 'Contacta' ? (
+                {navItem.isSubmenu ? (
+                  <div class="mobile-only">
+                    <button id="specialtyButton" class="specialty-button">
+                      <span>{navItem.title}</span>
+                      <Icon name="mdi:chevron-right" class="arrow-icon" id="specialtyArrow" />
+                    </button>
+                    <ul id="specialtySubmenu" class="specialty-submenu">
+                      {specialtyAreas.map(specialty => (
+                        <li>
+                          <a href={specialty.slug}>{specialty.title}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : navItem.title === 'Contacta' ? (
                   <a href={navItem.slug} class="nav-button">{navItem.title}</a>
                 ) : (
                   <a href={navItem.slug}><b>{navItem.title}</b></a>
@@ -66,7 +155,6 @@ const { navData, rightMenu } = Astro.props;
   </div>
   <div class="header-action-item__container">
     <slot name="action-item"></slot>
-    <!-- Menu Button for Mobile -->
     <button id="menuButton" class="menu-button" aria-label="Toggle Menu">
       <Icon id="menuButtonIconHam" name="mdi:menu" />
       <Icon id="menuButtonIconClose" name="mdi:close" hidden />
@@ -75,7 +163,7 @@ const { navData, rightMenu } = Astro.props;
 </header>
 
 <style>
-  /* Header Base Styles */
+  /* Base styles remain the same */
   header {
     position: fixed;
     top: 0;
@@ -94,6 +182,15 @@ const { navData, rightMenu } = Astro.props;
     grid-template-columns: 1fr auto auto;
     color: var(--theme-on-bg);
   }
+  .menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--theme-on-bg);
+    z-index: 100;
+  }
   .header-logo__link {
     width: fit-content;
     margin-left: 2.5rem;
@@ -108,18 +205,16 @@ const { navData, rightMenu } = Astro.props;
   .header-action-item__container {
     z-index: 100;
   }
-  
-  /* Navigation Styling */
   nav {
     display: flex;
   }
-  nav ul {
+  .main-menu {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
   }
-  nav ul li a {
+  .main-menu li a {
     text-decoration: none;
     margin-right: 3rem;
     color: inherit;
@@ -128,86 +223,138 @@ const { navData, rightMenu } = Astro.props;
     font-family: var(--theme-font-family-serif);
     font-size: var(--font-size-base);
   }
-  nav ul li a:hover {
+  .main-menu li a:hover {
     opacity: 1;
     text-decoration: underline;
   }
-
-  /* Menu Button Styles for Mobile */
-  .menu-button {
+  .mobile-only {
     display: none;
+  }
+  /* Specialty Menu Styles */
+  .specialty-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
     background: none;
     border: none;
+    color: inherit;
+    font-family: var(--theme-font-family-serif);
+    font-size: var(--font-size-base);
     cursor: pointer;
   }
-  /* New styles for nav button */
-  nav ul li .nav-button {
+  .specialty-button.active {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  .arrow-icon.rotate {
+    transform: rotate(90deg);
+  }
+  .specialty-submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+  }
+  .specialty-submenu.show-submenu {
+    display: block;
+  }
+  .specialty-submenu li {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .specialty-submenu li a {
+    display: block;
+    padding: 1rem 1rem 1rem 2rem;
+    margin: 0;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .specialty-submenu li a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  /* Nav Button Style */
+  .nav-button {
     background-color: var(--theme-primary);
-    color: var(--theme-bg);
+    color: var(--theme-bg) !important;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    min-width: 250px;
+    text-align: center;
+    justify-content: center;
+    margin-right: 0;
   }
-
-  nav ul li .nav-button:hover {
+  .nav-button:hover {
     background-color: var(--theme-primary-variant);
-    color: var(--theme-primary);
+    color: var(--theme-primary) !important;
   }
-
-  /* Full-Screen Menu for Mobile */
+  /* Mobile Styles */
   @media(max-width: 600px) {
-
-    .header-logo__link {
-      width: fit-content;
-      margin-left: 1rem;
+    .mobile-only {
+      display: block;
     }
-    /* Ensure the action container aligns to the far right */
-    .header-action-item__container {
-      display: flex;
-      align-items: center;
-    }
-    /* Menu button styling */
     .menu-button {
       display: block;
-      background-color: transparent;
+      background: none;
+      border: none;
       color: var(--theme-on-bg);
-      z-index: 100;
-      align-self: center;
-      margin-right: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
       font-size: 1.4rem;
+      margin-right: 1rem;
+      z-index: 100;
     }
-    /* Full-Screen Menu Overlay */
+    .header-logo__link {
+      margin-left: 1rem;
+    }
     .header-nav__container {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background-color: var(--theme-bg);
       display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       position: fixed;
       inset: 0;
       z-index: 99;
+      overflow-y: auto;
     }
-
-    /* Show overlay when menu is open */
     header[mobile-menu-open] .header-nav__container {
       display: flex;
+      padding-top: 4rem;
     }
-
-    /* Adjust navigation for mobile */
-    header[mobile-menu-open] nav ul {
-      align-items: center;
+    header[mobile-menu-open] .main-menu {
+      width: 100%;
       flex-direction: column;
+      align-items: flex-start;
     }
-    header[mobile-menu-open] nav ul li {
-      font-size: var(--font-size-lg);
-      margin-bottom: 1rem;
+    header[mobile-menu-open] .main-menu li {
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      justify-content: center;
+      padding: 0;
+      display: flex;
     }
-    header[mobile-menu-open] nav ul li .nav-button {
-      margin-bottom: 1rem;
+    header[mobile-menu-open] .main-menu li:last-child {
+      border-bottom: none;
+      justify-content: center;
+      padding: 0;
+      display: flex;
+      width: 100%;
+    }
+    header[mobile-menu-open] .main-menu li a {
+      display: block;
+      padding: 1rem;
+      margin: 0;
+    }
+    header[mobile-menu-open] .main-menu li .nav-button {
+      margin: 1rem 0;
       display: inline-block;
     }
   }
