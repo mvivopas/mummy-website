@@ -36,7 +36,7 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
       </div>
       {
         footerLists.map((list) => (
-          <div>
+          <div class="footer-link-section">
             <span class="link-title-format">{list.title}</span>
             <ul class="footer-link__list">
               {list.items.map((item) => (
@@ -133,24 +133,48 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
     font-family: var(--theme-font-family-serif);
     font-size: var(--font-size-base);
   }
-  @media (max-width: 768px) {
-    .footer-grid__container :first-child {
-      grid-column: 1/-1;
-    }
-    .footer-grid__container {
-      padding: 5vh 0;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-    }
-  }
+  /* Hide map and footer links on small screens */
   @media (max-width: 600px) {
     .footer-grid__container {
-      padding: 5vh 0;
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: 1fr; /* One column layout */
+      justify-items: center; /* Center align items */
+      gap: 1rem;
+      padding: 3vh 0;
+    }
+    
+    .footer-lists, /* Hide footer lists */
+    .footer-map__container { /* Hide map */
+      display: none;
+    }
+
+  /* Social and brand container styling */
+    .footer-brand__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 1rem;
     }
+
+    .footer-socials__list {
+      display: flex;
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-socials__item {
+      margin-right: 0.5rem;
+    }
+
+    .footer-link-section {
+      display: none;
+    }
+
+    /* Footer copyright */
     .footer-copyright__container {
-      flex-direction: column;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: var(--font-size-sm);
     }
   }
 </style>

@@ -1,65 +1,132 @@
 ---
-import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
 import TextSection from '../../components/sections/TextSection.astro'
 
 const seo = {
-	title: 'Aina Pascual | Derecho Real',
-	description: 'Aina Pascual | Derecho Real',
+    title: 'Aina Pascual | Derecho Real',
+    description: 'Aina Pascual | Derecho Real',
 };
 ---
 
 <Layout {seo}>
-	<TextAndImageHero reversed>
-		<div slot="text-container">
-			<h1>Derecho Real</h1>
-			<em>
-		    	Regula las relaciones jurídicas entre las personas y los bienes, estableciendo quién 
-				tiene derechos sobre ellos y en qué medida. Este derecho se centra en los bienes, ya 
-				sean muebles o inmuebles, y en las facultades que las personas pueden ejercer sobre 
-				ellos, como posesión, uso, disfrute o disposición.
-	        </em>
-		</div>
-		<picture slot="image-container">
-			<img
-				src="/assets/images/areas_especialidad/derecho-real.jpg"
-				alt="Astro Odyssey"
-				loading="lazy"
-			/>
-		</picture>
-	</TextAndImageHero>
+    <TextAndImageHero reversed class="responsive-hero">
+        <div slot="text-container" class="hero-text">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl mb-4">Derecho Real</h1>
+            <em class="text-sm md:text-base lg:text-md">
+                Regula las relaciones jurídicas entre las personas y los bienes, estableciendo quién 
+                tiene derechos sobre ellos y en qué medida. Este derecho se centra en los bienes, ya 
+                sean muebles o inmuebles, y en las facultades que las personas pueden ejercer sobre 
+                ellos, como posesión, uso, disfrute o disposición.
+            </em>
+        </div>
+        <div slot="image-container" class="hero-image-wrapper">
+            <picture class="hero-image">
+                <img
+                    src="/assets/images/areas_especialidad/derecho-real.jpeg"
+                    alt="Astro Odyssey"
+                    loading="lazy"
+                    class="w-full h-auto object-cover"
+                />
+            </picture>
+        </div>
+    </TextAndImageHero>
 
-	<TextSection>
+    <TextSection class="responsive-text-section">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl mb-6">Principales competencias</h2>
+        
+        <div class="space-y-6">
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Constitución de derechos reales</h3>
+                <p class="text-sm">
+                    Para que los derechos reales como la propiedad, la servidumbre o el usufructo sean 
+                    reconocidos legalmente, deben constituirse conforme a las formalidades legales, como 
+                    la inscripción en el Registro de la Propiedad.
+                </p>
+            </div>
 
-		<h2>Principales procedimientos</h2>
-		<h3>Constitución de derechos reales</h3>
-		<p>
-			Para que los derechos reales como la propiedad, la servidumbre o el usufructo sean 
-			reconocidos legalmente, deben constituirse conforme a las formalidades legales, como 
-			la inscripción en el Registro de la Propiedad.
-		</p>
-		<h3>Reivindicación de la propiedad</h3>
-		<p>
-			Cuando alguien se apropia indebidamente de un bien ajeno, el propietario puede iniciar 
-			un procedimiento de reivindicación para recuperar el bien. Este procedimiento busca 
-			la devolución del bien y la restauración del derecho del propietario. 
-		</p>
-		<h3>Deslinde y amojonamiento</h3>
-		<p>
-			El procedimiento de deslinde y amojonamiento se realiza cuando existen conflictos sobre 
-			los límites de una propiedad. Este proceso permite establecer la línea de separación entre 
-			propiedades vecinas para evitar disputas futuras. 
-		</p>
-		<h3>Servidumbres y derechos de paso</h3>
-		<p>
-			Las servidumbres son derechos que se establecen sobre una propiedad en favor de otra, como 
-			el derecho de paso. Estos derechos deben establecerse formalmente y, en caso de disputas o 
-			necesidad de modificación, es posible recurrir a un procedimiento judicial. Un abogado puede 
-			ayudar a crear, modificar o resolver conflictos relacionados con las servidumbres, asegurando 
-			el cumplimiento de la ley y la equidad entre las partes.
-		</p>
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Reivindicación de la propiedad</h3>
+                <p class="text-sm">
+                    Cuando alguien se apropia indebidamente de un bien ajeno, el propietario puede iniciar 
+                    un procedimiento de reivindicación para recuperar el bien. Este procedimiento busca 
+                    la devolución del bien y la restauración del derecho del propietario. 
+                </p>
+            </div>
 
-	</TextSection>
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Deslinde y amojonamiento</h3>
+                <p class="text-sm">
+                    El procedimiento de deslinde y amojonamiento se realiza cuando existen conflictos sobre 
+                    los límites de una propiedad. Este proceso permite establecer la línea de separación entre 
+                    propiedades vecinas para evitar disputas futuras. 
+                </p>
+            </div>
 
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Servidumbres y derechos de paso</h3>
+                <p class="text-sm">
+                    Las servidumbres son derechos que se establecen sobre una propiedad en favor de otra, como 
+                    el derecho de paso. Estos derechos deben establecerse formalmente y, en caso de disputas o 
+                    necesidad de modificación, es posible recurrir a un procedimiento judicial. Un abogado puede 
+                    ayudar a crear, modificar o resolver conflictos relacionados con las servidumbres, asegurando 
+                    el cumplimiento de la ley y la equidad entre las partes.
+                </p>
+            </div>
+        </div>
+    </TextSection>
 </Layout>
+
+<style>
+    .responsive-hero {
+        @apply px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16;
+    }
+    .hero-text {
+        @apply max-w-prose mx-auto;
+    }
+    .hero-image {
+        @apply hidden md:block max-w-lg mx-auto mt-6 md:mt-0;
+    } 
+    .responsive-text-section {
+        @apply px-4 py-4 md:px-6 lg:px-8 py-8 md:py-12 max-w-4xl mx-auto;
+    }
+    .procedure-item {
+        @apply bg-white p-4 md:p-6 rounded-lg shadow-sm;
+    }
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+        .responsive-hero {
+            @apply px-0 py-4; /* Remove horizontal padding on mobile */
+        }
+        .text-and-image__section {
+            margin: 1rem 2rem;
+            min-height: auto;
+            padding: 1rem 0;
+            gap: 0.5rem;
+        }
+        
+        :global(.text__section) {
+            margin: 0.75rem auto !important; /* Reduced margin */
+        }
+
+        .hero-text {
+            padding: 1rem 0;
+        }
+        
+        .hero-image-wrapper {
+            @apply mt-4 w-full max-w-none; /* Full width on mobile */
+        }
+
+        .procedure-item p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            letter-spacing: 0.5px; /* Optional */
+            font-size: var(--font-size-sm);
+        }
+        .procedure-item h3 {
+            text-align: center;
+            font-size: var(--font-size-md);
+        }
+    }
+</style>

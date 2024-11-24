@@ -1,58 +1,128 @@
 ---
-import { CustomerQuoteSection, StickyTextImageSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import TextAndImageHero from '../../components/sections/heros/TextAndImageHero.astro';
 import TextSection from '../../components/sections/TextSection.astro'
 
 const seo = {
-	title: 'Aina Pascual | Derecho Sucesorio',
-	description: 'Aina Pascual | Derecho Sucesorio',
+    title: 'Aina Pascual | Derecho Sucesorio',
+    description: 'Aina Pascual | Derecho Sucesorio',
 };
 ---
 
 <Layout {seo}>
-	<TextAndImageHero reversed>
-		<div slot="text-container">
-			<h1>Derecho Sucesorio</h1>
-			<em>
-        El derecho de sucesiones regula la sucesión mortis causa de las titularidades y relaciones jurídicas tanto activas como pasivas de una persona.
-      </em>
-		</div>
-		<picture slot="image-container">
-			<img
-				src="/assets/images/areas_especialidad/derecho-sucesiones.jpeg"
-				alt="Astro Odyssey"
-				loading="lazy"
-			/>
-		</picture>
-	</TextAndImageHero>
+    <TextAndImageHero reversed class="responsive-hero">
+        <div slot="text-container" class="hero-text">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl mb-4">Derecho Sucesorio</h1>
+            <em class="text-sm md:text-base lg:text-md">
+                El derecho de sucesiones regula la sucesión mortis causa de las titularidades y relaciones jurídicas 
+                tanto activas como pasivas de una persona.
+            </em>
+        </div>
+        <div slot="image-container" class="hero-image-wrapper">
+            <picture slot="image-container" class="hero-image">
+                <img
+                    src="/assets/images/areas_especialidad/derecho-sucesiones.jpeg"
+                    alt="Astro Odyssey"
+                    loading="lazy"
+                    class="w-full h-auto object-cover rounded-lg shadow-md"
+                />
+            </picture>
+        </div>
+    </TextAndImageHero>
 
-	<TextSection>
-		<h2>Principales procedimientos</h2>
-		<h3>Declaración de herederos</h3>
-		<p>
-			En ausencia de testamento, o cuando alguna parte de la herencia no está claramente asignada, es
-			fundamental iniciar un procedimiento para identificar a los herederos legales. Dado que este proceso
-			puede resultar complejo, es recomendable contar con el asesoramiento de un abogado especializado que
-			guíe los trámites, ya sea ante notario o en vía judicial, según corresponda.
-		</p>
+    <TextSection class="responsive-text-section">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl mb-6">Principales competencias</h2>
+        
+        <div class="space-y-6">
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Declaración de herederos</h3>
+                <p class="text-sm">
+                    En ausencia de testamento, o cuando alguna parte de la herencia no está claramente asignada, es
+                    fundamental iniciar un procedimiento para identificar a los herederos legales. Dado que este proceso
+                    puede resultar complejo, es recomendable contar con el asesoramiento de un abogado especializado que
+                    guíe los trámites, ya sea ante notario o en vía judicial, según corresponda.
+                </p>
+            </div>
 
-		<h3>Partición de la herencia</h3>
-		<p>
-			Una vez identificados los herederos, se procede a repartir el patrimonio del fallecido. Aunque la partición
-			puede realizarse de mutuo acuerdo entre los herederos, si surgen desacuerdos o conflictos entre herederos,
-			es necesario recurrir a un procedimiento judicial para que un juez determine la forma más justa de repartir
-			la herencia.
-		</p>
-		<h3>Colación hereditaria</h3>
-		<p>
-			La colación hereditaria es el proceso por el cual los herederos forzosos deben reintegrar al caudal
-			hereditario los bienes o donaciones que hayan recibido en vida del fallecido, con el fin de garantizar
-			una distribución justa de la herencia. En casos de herencias con bienes inmuebles, empresas o propiedades
-			de gran valor, la colación puede ser un proceso complejo que requiere la intervención de un abogado para
-			identificar qué bienes deben colacionarse y en qué términos.
-		</p>
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Partición de la herencia</h3>
+                <p class="text-sm">
+                    Una vez identificados los herederos, se procede a repartir el patrimonio del fallecido. Aunque la partición
+                    puede realizarse de mutuo acuerdo entre los herederos, si surgen desacuerdos o conflictos entre herederos,
+                    es necesario recurrir a un procedimiento judicial para que un juez determine la forma más justa de repartir
+                    la herencia.
+                </p>
+            </div>
 
-	</TextSection>
-
+            <div class="procedure-item">
+                <h3 class="text-xl md:text-2xl mb-3">Colación hereditaria</h3>
+                <p class="text-sm">
+                    La colación hereditaria es el proceso por el cual los herederos forzosos deben reintegrar al caudal
+                    hereditario los bienes o donaciones que hayan recibido en vida del fallecido, con el fin de garantizar
+                    una distribución justa de la herencia. En casos de herencias con bienes inmuebles, empresas o propiedades
+                    de gran valor, la colación puede ser un proceso complejo que requiere la intervención de un abogado para
+                    identificar qué bienes deben colacionarse y en qué términos.
+                </p>
+            </div>
+        </div>
+    </TextSection>
 </Layout>
+
+<style>
+    .responsive-hero {
+        @apply px-4 py-4 md:px-6 md:py-12 lg:px-8 lg:py-16;
+    }
+
+    .hero-text {
+        @apply max-w-prose mx-auto;
+    }
+
+    .hero-image {
+        @apply hidden md:block max-w-lg mx-auto mt-6 md:mt-0;
+    }
+
+    .responsive-text-section {
+        @apply px-4 py-4 md:px-6 lg:px-8 py-8 md:py-12 max-w-4xl mx-auto;
+    }
+
+    .procedure-item {
+        @apply bg-white p-4 md:p-6 rounded-lg shadow-sm;
+    }
+
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+        .responsive-hero {
+            @apply px-0 py-4; /* Remove horizontal padding on mobile */
+        }
+        .text-and-image__section {
+            margin: 1rem 2rem;
+            min-height: auto;
+            padding: 1rem 0;
+            gap: 0.5rem;
+        }
+        
+        :global(.text__section) {
+            margin: 0.75rem auto !important; /* Reduced margin */
+        }
+
+        .hero-text {
+            padding: 1rem 0;
+        }
+        
+        .hero-image-wrapper {
+            @apply mt-4 w-full max-w-none; /* Full width on mobile */
+        }
+
+        .procedure-item p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            letter-spacing: 0.5px; /* Optional */
+            font-size: var(--font-size-sm);
+        }
+        .procedure-item h3 {
+            text-align: center;
+            font-size: var(--font-size-md);
+        }
+    }
+</style>
