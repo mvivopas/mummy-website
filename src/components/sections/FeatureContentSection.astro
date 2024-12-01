@@ -9,29 +9,74 @@ const { title, id } = Astro.props;
 
 <section
   id={id}
-  class="flex scroll-mt-24 flex-col items-center gap-2 space-y-1"
+  class="section-container"
 >
-  <div class="flex flex-col items-center gap-4">
+  <div class="section-header">
     <slot name="eyebrow" />
-    <h2
-      class="gradient-text text-center font-extrabold tracking-tight text-6xl"
-    >
+    <h2 class="section-title">
       {title}
     </h2>
   </div>
   <div class="stats-container">
     <slot name="stats" />
   </div>
-  <p class="max-w-xl text-left font-extrabold text-2xl">
+  <p class="section-lead">
     <slot name="lead" />
   </p>
   <slot />
 </section>
 
 <style>
+.section-container {
+  display: flex;
+  scroll-margin-top: 6rem; /* 24 * 0.25rem = 6rem */
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; /* space-y-1 equivalent */
+  margin-bottom: 0.25rem; /* additional spacing */
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* gap-4 equivalent */
+}
+
+.section-title {
+  background: linear-gradient(to right, #your-gradient-colors); /* for gradient-text */
+  text-align: center;
+  font-weight: 800; /* font-extrabold */
+  letter-spacing: -0.025em; /* tracking-tight */
+  font-size: 3.75rem; /* text-6xl */
+}
+
 .stats-container {
   display: flex;
-  flex-direction: column; /* Allow for vertical stacking if needed */
-  align-items: center; /* Center items within the stats container */
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-lead {
+  max-width: 36rem; /* max-w-xl */
+  text-align: left;
+  font-weight: 800; /* font-extrabold */
+  font-family: var(--theme-font-family-serif);
+  font-size: var(--font-size-lg);
+}
+
+/* Mobile Styles */
+@media (max-width: 1100px) {
+  .section-title {
+    font-size: 2.5rem; /* Reduce title size on smaller screens */
+  }
+
+  .section-lead {
+    font-size: 1rem; /* Slightly smaller lead text */
+  }
+
+  .section-container {
+    gap: 0.25rem; /* Reduce gap slightly */
+  }
 }
 </style>

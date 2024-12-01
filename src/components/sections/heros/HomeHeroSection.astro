@@ -15,10 +15,10 @@ import Stats from "../../cards/Stats.astro";
 			]}
 			slot="stats"
 			/>
-            <h3 slot="lead">
+            <p slot="lead" class="lead-text">
                 Licenciada en Derecho por la Universidad de Barcelona en <a class="highlighted-text" href="/company/about">1987</a>. <br></br>
 				Con despacho ubicado en <a class="highlighted-text" href="/company/office"> Ciutadella de Menorca</a>.
-            </h3>
+			</p>
         </FeatureContentSection>
 		<div class="hero-section__image">
 				<picture>
@@ -43,10 +43,14 @@ import Stats from "../../cards/Stats.astro";
 		gap: 5rem;
 		margin-bottom: 6rem;
 	}
-	.stats-container {
-		display: flex;
-		flex-direction: column; /* Allow for vertical stacking if needed */
-		align-items: center; /* Center items within the stats container */
+	.lead-text {
+		font-family: var(--theme-font-family-serif);
+		font-size: var(--font-size-lg);
+		max-width: 600px; /* Limit text width for better readability */
+		margin: 1.5rem auto; /* Center the text and add some vertical spacing */
+		color: var(--theme-on-bg); /* Use theme text color */
+		text-align: center; /* Center the text */
+		letter-spacing: 0.015em; /* Slight letter spacing for cleaner look */
 	}
 	.hero-section__image {
 		display: flex;
@@ -66,7 +70,15 @@ import Stats from "../../cards/Stats.astro";
   		text-decoration: underline; /* Add underline on hover */
   		text-decoration-color: var(--theme-primary); /* Specify underline color */
 	}
-	@media (max-width: 600px) {
+	@media (max-width: 1050px) {
+		.lead-text {
+			font-size: var(--font-size-md);
+		}
+	}
+	@media (max-width: 750px) {
+		.lead-text {
+			font-size: var(--font-size-lg);
+		}
 		.hero-section__section {
 			grid-template-columns: 1fr;
 			margin: 90px auto;
