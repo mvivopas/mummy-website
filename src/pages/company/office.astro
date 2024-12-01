@@ -11,7 +11,7 @@ const seo = {
 <Layout {seo}>
   <HeroSection>
     <div slot="text-container" class="text-container">
-      <h1>Dónde encontrarnos</h1>
+      <h2 class="text-container-title">Dónde encontrarnos</h2>
       <h4>
         Despacho ubicado en Ciutadella de Menorca, en el <a class="highlighted-text" href="https://maps.app.goo.gl/AoSffsogciuF7u218"> <u>número 20 de la calle Mallorca</u></a><br><br>
         Estamos abiertos al público de <span class="highlighted-text"> lunes a viernes de 9:00 a 13:00</span> y por la tarde para citas concertadas<br><br>
@@ -20,10 +20,11 @@ const seo = {
     </div>
     <picture slot="image-container" class="hero-image">
       <img
-        src="/assets/images/home/office-mock.jpg"
+        src="/assets/images/home/office-wip.jpg"
         alt="Astro Odyssee"
         id="home-hero-image"
       />
+      <span class="hero-img-span">Estamos creando un nuevo espacio, en 2025 nos mudamos!</span>
     </picture>
     <div slot="image-container" class="hero-image-mobile">
       <iframe
@@ -40,34 +41,72 @@ const seo = {
 </Layout>
 
 <style>
-	.text-container {
-	  margin: 80px auto; /* Reduced margin */
-	  max-width: 600px; /* Limit the width of the text */
-	  margin-right: 1.5rem; /* Reduced margin */
-	}
-	.main-text {
-	  font-weight: bold; /* Optional: make the text bold */
-	}
-	.highlighted-text {
-	  color: var(--theme-primary);
-	  font-weight: bold; /* Optional: make the text bold */
-	}
-	.reserve-link:hover {
-	  text-decoration: underline;
-	  cursor: pointer;
-	}
-	.hero-image {
-	  @apply hidden md:block max-w-md mx-auto mt-6 md:mt-0;
-	}
-	.hero-image-mobile {
-	  @apply block md:hidden max-w-md mx-auto mt-1 mb-16; /* More margin at the bottom */
-	}
-	.hero-image-mobile iframe {
-	  @apply w-full rounded-lg; /* Rounded borders */
-	}
-	@media (max-width: 768px) {
-	  .text-container {
-		margin-bottom: 15px;
-	  }
-	}
+  :global(body) {
+      display: flex;
+      flex-direction: column;
+  }
+  .text-container {
+      margin: 80px auto; /* Reduced margin */
+      max-width: 600px; /* Limit the width of the text */
+      margin-right: 1.5rem; /* Reduced margin */
+      width: 100%; /* Ensure full width */
+  }
+
+  .main-text {
+      font-weight: bold; /* Optional: make the text bold */
+  }
+
+  .highlighted-text {
+      color: var(--theme-primary);
+      font-weight: bold; /* Optional: make the text bold */
+  }
+
+  .reserve-link:hover {
+      text-decoration: underline;
+      cursor: pointer;
+  }
+
+  .hero-image {
+    display: block;
+    width: 75%;
+    height: 65%;
+    margin: 4rem auto; /* Centered with some margin */
+  }
+
+  .hero-img-span {
+		font-family: var(--theme-font-family-serif);
+		font-size: var(--font-size-sm);
+    margin: 1rem auto;
+  }
+
+  .hero-image-mobile {
+      display: none;
+  }
+
+  .hero-image-mobile iframe {
+      width: 100%;
+      max-width: 320px; /* Maintain max width */
+      border-radius: 8px;
+      margin: 0 auto; /* Center the iframe */
+  }
+
+  @media (max-width: 768px) {
+    .text-container-title {
+      font-size: 2.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+      .hero-image {
+          display: none;
+      }
+      .hero-image-mobile {
+        display: block;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .text-container {
+        margin: 40px auto;
+        padding: 0 1rem; /* Add some horizontal padding */
+      }
+  }
 </style>
