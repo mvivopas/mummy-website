@@ -33,11 +33,11 @@ export const footerLists = [
 				slug: '/landing-pages/derecho-civil',
 			},
 			{
-				title: 'Derecho de obligaciones',
+				title: 'Derecho Contractual y Obligaciones',
 				slug: '/landing-pages/derecho-contratos',
 			},
 			{
-				title: 'Derecho Real',
+				title: 'Propiedad y Derecho Real',
 				slug: '/landing-pages/derecho-real'
 			},
 			{
