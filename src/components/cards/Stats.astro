@@ -1,78 +1,121 @@
 ---
-// Stats.astro
 const { stats = [], id, classes = {} } = Astro.props;
 ---
 
 <div class="stats-wrapper">
     {stats.map(({ amount, title, icon }) => (
     <div 
-    class="stat-item p-4 text-center md:w-1/4 sm:w-1/2 w-full min-w-[300px] md:border-r md:last:border-none"
-    style="border-color: var(--theme-on-bg); border-right-width: 3px;"
+    class="stat-item"
     >
- 
         {amount && (
-        <h2 class="font-heading lg:text-3xl xl:text-3xl text-[2.6rem] font-bold" style="color: var(--theme-primary)">
+        <h2 class="stat-amount">
             {amount}
         </h2>
         )}
         {title && (
-        <div class="text-sm font-medium uppercase tracking-widest lg:text-base">
+        <div class="stat-title">
             {title}
         </div>
         )}
-
     </div>
     ))}
 </div>
-
 
 <style>
     .stats-wrapper {
         display: flex;
         justify-content: center;
         text-align: center;
-        flex-wrap: wrap; /* Allows wrapping on smaller screens if needed */
-        gap: 1rem; /* Adds spacing between stats */
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    /* Individual stat item styling */
-    .stats-wrapper > div {
-        flex: 1 1 45%; /* Each item takes up about half the width, but can shrink */
+    .stat-item {
+        flex: 1 1 45%;
         text-align: center;
         justify-content: center;
         text-justify: inter-word;
         hyphens: auto;
-        min-width: 150px; /* Ensures a minimum width */
+        min-width: 300px;
         padding: 1rem;
-        border-right: 3px solid var(--theme-on-bg); /* Initial border size */
+        border-right: 3px solid var(--theme-on-bg);
     }
 
-    /* Remove the border from the last item */
-    .stats-wrapper > div:last-child {
+    .stat-item:last-child {
         border-right: none;
     }
 
-    /* Adjustments for medium screens */
-    @media (max-width: 768px) {
+    .stat-amount {
+        color: var(--theme-primary);
+        font-size: 2.6rem;
+        font-weight: bold;
+    }
+
+    .stat-title {
+        font-size: 1rem; /* text-sm */
+        font-weight: 500; /* font-medium */
+        text-transform: uppercase;
+        letter-spacing: 0.1em; /* tracking-widest */
+    }
+
+    /* Responsive styles for medium screens */
+    @media (max-width: 1380px) {
         .stat-item {
             border: none;
-            padding: 0.75rem; /* Less padding */
+        }
+    }
+    @media (max-width: 1050px) {
+        .stat-item {
             gap: 0.5rem;
             max-width: 8rem;
+            min-width: auto;
         }
-}
 
-    /* Adjustments for small screens */
-    @media (max-width: 600px) {
-        .stats-wrapper > div {
-            flex: 1 1 45%; /* Each item still takes about half the width */
+        .stat-amount {
+            font-size: 2rem;
+        }
+
+        .stat-title {
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Responsive styles for small screens */
+    @media (max-width: 750px) {
+        .stat-item {
             border: none;
-            padding: 0.15rem; /* Smaller padding for compact display */
+            flex: 1 1 45%;
             text-align: center;
             justify-content: center;
             text-justify: inter-word;
             hyphens: auto;
+            min-width: 300px;
+            padding: 1rem;
+        }
+
+        .stat-amount {
+            font-size: 1.75rem;
+        }
+
+        .stat-title {
+            font-size: 0.8rem;
         }
     }
 
+    @media (max-width: 400px) {
+        .stat-item {
+            flex: 1 1 45%;
+            border: none;
+            padding: 0.15rem;
+            min-width: auto;
+        }
+
+        .stat-amount {
+            font-size: 1.75rem;
+        }
+
+        .stat-title {
+            font-size: 0.675rem;
+        }
+    }
 </style>

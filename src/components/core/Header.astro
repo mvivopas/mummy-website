@@ -103,7 +103,7 @@ const mobileNavData = [
       const newWidth = window.innerWidth;
       if (newWidth !== windowWidth) {
         windowWidth = newWidth;
-        if (newWidth > 600) {
+        if (newWidth > 700) {
           if (navHeader.hasAttribute('mobile-menu-open')) {
             toggleMenu();
           }
@@ -193,7 +193,6 @@ const mobileNavData = [
   }
   .header-logo__link {
     width: fit-content;
-    margin-left: 2.5rem;
     color: inherit;
     text-decoration: none;
   }
@@ -201,6 +200,7 @@ const mobileNavData = [
     display: flex;
     align-items: center;
     z-index: 100;
+
   }
   .header-action-item__container {
     z-index: 100;
@@ -245,6 +245,7 @@ const mobileNavData = [
     cursor: pointer;
   }
   .specialty-button.active {
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.05);
   }
   .arrow-icon {
@@ -258,13 +259,16 @@ const mobileNavData = [
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 
   }
   .specialty-submenu.show-submenu {
+    width: 100%;
     display: block;
   }
   .specialty-submenu li {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
   }
   .specialty-submenu li a {
     display: block;
@@ -273,6 +277,8 @@ const mobileNavData = [
     color: inherit;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: left;
   }
   .specialty-submenu li a:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -296,7 +302,23 @@ const mobileNavData = [
     color: var(--theme-primary) !important;
   }
   /* Mobile Styles */
-  @media(max-width: 600px) {
+	@media (max-width: 1100px) {
+    .header-nav__container {
+      font-size: var(--font-size-base);
+    }
+    .main-menu li a {
+      font-size: var(--font-size-sm);
+    }
+    .nav-button {
+      font-size: var(--font-size-sm);
+      padding: 0.25rem 0.5rem;
+    }
+    .specialty-button {
+      font-size: var(--font-size-sm);
+      width: 100%;
+    }
+  }
+  @media(max-width: 700px) {
     .mobile-only {
       display: block;
     }
