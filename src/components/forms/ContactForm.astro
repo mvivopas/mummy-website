@@ -137,10 +137,14 @@ form.addEventListener('submit', function(e) {
           resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
           resultDiv.className = "result-message error";
           errorIcon.classList.add('visible');
+          const error_trigger = new Error('Error al enviar el formulario de contacto!');
+          error_trigger.data = json;
+          throw error_trigger;
         }
       })
       .catch(error => {
         console.log(error);
+        throw error;
       })
       .then(function() {
         form.reset();
