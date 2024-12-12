@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 import lit from "@astrojs/lit";
+import sentry from "@sentry/astro";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -16,7 +17,15 @@ export default defineConfig({
   sitemap: true,
 
   // Add renderers to the config
-  integrations: [sitemap(), mdx(), lit(), icon(), tailwind()],
+  integrations: [sitemap(), mdx(), lit(), icon(), tailwind(),
+    sentry({
+      dsn: "https://6c60b87303a6232796fc983168c7b06c@o4508393660022784.ingest.de.sentry.io/4508393662906448",
+      sourceMapsUploadOptions: {
+        project: "web-mama",
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+      },
+    }),
+  ],
 
   output: "server",
   adapter: vercel()
