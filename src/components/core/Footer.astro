@@ -1,9 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Container  from '../core/Container.astro';
+import Container from '../core/Container.astro';
 import Plug from './Plug.astro';
 
-const { footerSocials, footerLists, copyrightName, background, color, showPlug: showPlug = true } =
+const { footerSocials, copyrightName, background, color, showPlug: showPlug = true } =
   Astro.props;
 ---
 
@@ -12,43 +12,31 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
 >
   <Container>
     <div class="footer-grid__container">
-      <div class="footer-brand__container">
-        <div>
-          <slot name="logo" />
-        </div>
-        <ul class="footer-socials__list">
-          {
-            footerSocials.map((social) => (
-              <li class="footer-socials__item">
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="footer-socials__link"
-                  title={`Open ${social.name} profile`}
-                >
-                  <Icon name={social.icon} width={24} height={24} />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      {
-        footerLists.map((list) => (
-          <div class="footer-link-section">
-            <span class="link-title-format">{list.title}</span>
-            <ul class="footer-link__list">
-              {list.items.map((item) => (
-                <li>
-                  <a href={item.slug}>{item.title}</a>
+      <!-- Center Logo and Social Icons -->
+      <div class="footer-left__container">
+        <div class="footer-brand__container">
+          <img src="/logo-trans.png" alt="Company Logo" class="footer-logo" />
+          <ul class="footer-socials__list">
+            {
+              footerSocials.map((social) => (
+                <li class="footer-socials__item">
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer-socials__link"
+                    title={`Open ${social.name} profile`}
+                  >
+                    <Icon name={social.icon} width={24} height={24} />
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-      <!-- Right side for Google Maps iframe -->
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Center Map -->
       <div class="footer-map__container">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9137.69360203076!2d3.834541340159084!3d39.99966155792951!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12be03f7975bdcb3%3A0x626b40ff83c10460!2sCarrer%20de%20Mallorca%2C%2020%2C%2007760%20Ciutadella%20de%20Menorca%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1730044818023!5m2!1ses!2ses"
@@ -62,12 +50,10 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
       </div>
     </div>
 
-
     <div class="footer-copyright__container">
       {showPlug && <Plug/>}
       <p>&copy; {new Date().getFullYear()} {copyrightName}</p>
     </div>
-
   </Container>
 </footer>
 
@@ -75,111 +61,81 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
   footer {
     --footer-bg: var(--theme-primary);
     --footer-color: var(--theme-on-primary);
-    width: 100vw; /* Full viewport width */
-    position: relative; /* Ensure correct positioning */
-    left: 50%; /* Center it relative to the viewport */
-    right: 50%; /* Counter any left offset */
-    margin-left: -50vw; /* Pull it back to the left */
-    margin-right: -50vw; /* Pull it back to the right */
+    width: 100vw;
     background-color: var(--footer-bg);
     color: var(--footer-color);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
   .footer-grid__container {
-    padding:5vh 0 0 0;
     display: flex;
-    grid-template-columns: 250px 250px 250px;
-    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh 0;
+    gap: 7rem; /* Increased gap between logo and map */
+  }
+  .footer-left__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-right: 2px solid var(--theme-on-bg); /* Adjusted border size */
+    padding-right: 2rem;
+    height: fit-content; /* Adjusted height of the border to fit content */
   }
   .footer-brand__container {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
   }
+  .footer-logo {
+    max-width: 350px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
   .footer-socials__list {
-    margin: 0;
-    padding: 0;
     display: flex;
+    justify-content: center;
     list-style: none;
+    padding: 0;
+    margin-top: 1rem;
   }
   .footer-socials__item {
     margin-right: 0.5rem;
   }
-  .footer-link__list {
-    margin: 1rem;
-    padding: 0;
-    list-style: none;
-  }
-  .footer-link__list li {
-    margin-bottom: 0.5rem;
-  }
-  .footer-link__list li a {
+  .footer-socials__link {
     text-decoration: none;
   }
-  .footer-link__list li a:hover {
-    opacity: 0.84;
+  .footer-map__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .footer-map__container iframe {
-  border-radius: 30px; /* Rounded edges */
-  overflow: hidden; /* Hide overflow */
+  iframe {
+    border-radius: 30px;
+    border: 0;
   }
   .footer-copyright__container {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-  }
-  .footer-copyright__container p {
-    font-size: var(--font-size-sm);
-  }
-  .link-title-format {
-    font-family: var(--theme-font-family-serif);
-    font-size: var(--font-size-base);
-  }
-  /* Hide map and footer links on small screens */
-  @media (max-width: 1400px) {
-    .footer-map__container { /* Hide map */
-      display: none;
-    }
+    margin-top: 0.5rem;
+    text-align: left; /* Align text to the left */
+    position: absolute; /* Position it at the bottom left */
+    bottom: 0;
+    left: 0;
+    padding: 0.75rem; /* Add padding for spacing */
   }
   @media (max-width: 700px) {
     .footer-grid__container {
-      display: grid;
-      grid-template-columns: 1fr; /* One column layout */
-      justify-items: center; /* Center align items */
-      gap: 1rem;
-      padding: 3vh 0;
-    }
-    
-    .footer-lists, /* Hide footer lists */
-    .footer-map__container { /* Hide map */
-      display: none;
-    }
-
-  /* Social and brand container styling */
-    .footer-brand__container {
-      display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1rem;
+      gap: 2rem;
     }
-
-    .footer-socials__list {
-      display: flex;
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-socials__item {
-      margin-right: 0.5rem;
-    }
-
-    .footer-link-section {
-      display: none;
-    }
-
-    /* Footer copyright */
-    .footer-copyright__container {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: var(--font-size-sm);
+    .footer-map__container iframe {
+      width: 100%;
+      height: 250px;
     }
   }
 </style>
