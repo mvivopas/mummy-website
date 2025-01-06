@@ -1,5 +1,5 @@
 export interface FeatureItem {
-  description: string;
+  description: string[];
   icon: string;
   title: string;
   link: string;
