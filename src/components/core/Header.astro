@@ -3,18 +3,9 @@ import { Icon } from 'astro-icon/components';
 
 const { navData, rightMenu } = Astro.props;
 
-// Add specialties data
-const specialtyAreas = [
-  { title: "Responsabilidad Civil", slug: "/landing-pages/derecho-civil" },
-  { title: "Propiedad y derecho real", slug: "/landing-pages/derecho-real" },
-  { title: "Derecho Sucesorio", slug: "/landing-pages/derecho-sucesorio" },
-  { title: "Derecho Contractual y Obligaciones", slug: "/landing-pages/derecho-contratos" }
-];
-
 // Add the specialty menu item to navData for mobile only
 const mobileNavData = [
   ...navData.filter(item => item.title !== 'Contacta'),
-  { title: 'Áreas de Especialidad', isSubmenu: true },
   ...navData.filter(item => item.title === 'Contacta')
 ];
 ---
@@ -133,13 +124,6 @@ const mobileNavData = [
                       <span>{navItem.title}</span>
                       <Icon name="mdi:chevron-right" class="arrow-icon" id="specialtyArrow" />
                     </button>
-                    <ul id="specialtySubmenu" class="specialty-submenu">
-                      {specialtyAreas.map(specialty => (
-                        <li>
-                          <a href={specialty.slug}>{specialty.title}</a>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 ) : navItem.title === 'Contacta' ? (
                   <a href={navItem.slug} class="nav-button">{navItem.title}</a>
