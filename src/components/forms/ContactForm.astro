@@ -23,10 +23,11 @@ const apiKey = import.meta.env.WEB3FORMS_API_KEY;
   <label for="theme-select">Tema de la consulta</label>
   <select name="theme" id="theme-select" required>
     <option value="" disabled selected>Selecciona un tema</option>
-    <option value="Propiedad y Derecho Real">Propiedad y Derecho Real</option>
+    <option value="Propiedad y Derechos Reales">Propiedad y Derechos Reales</option>
     <option value="Derecho Sucesorio">Derecho Sucesorio</option>
-    <option value="Derecho Contractual y Obligaciones">Derecho Contractual y Obligaciones</option>
-    <option value="Responsabilidad Civil">Responsabilidad Civil</option>
+    <option value="Obligaciones y contratos">Obligaciones y Contratos</option>
+    <option value="Derecho de Daños">Derecho de Daños</option>
+    <option value="Derecho de Familia">Derecho de Familia</option>
   </select>
   
   <label for="message-textarea">Información complementaria sobre la consulta</label>
@@ -137,10 +138,14 @@ form.addEventListener('submit', function(e) {
           resultDiv.textContent = "Algo ha ido mal, mientras lo solucionamos puedes llamar directamente al (+34) 971 480 375 para reservar cita";
           resultDiv.className = "result-message error";
           errorIcon.classList.add('visible');
+          const error_trigger = new Error('Error al enviar el formulario de contacto!');
+          error_trigger.data = json;
+          throw error_trigger;
         }
       })
       .catch(error => {
         console.log(error);
+        throw error;
       })
       .then(function() {
         form.reset();
