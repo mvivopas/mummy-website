@@ -62,6 +62,7 @@ const { stats = [], id, classes = {} } = Astro.props;
     @media (max-width: 1380px) {
         .stat-item {
             border: none;
+            min-width: auto;
         }
     }
     @media (max-width: 1050px) {
@@ -89,8 +90,8 @@ const { stats = [], id, classes = {} } = Astro.props;
             justify-content: center;
             text-justify: inter-word;
             hyphens: auto;
-            min-width: 300px;
-            padding: 1rem;
+            min-width: auto;
+            padding: 0.20rem;
         }
 
         .stat-amount {
