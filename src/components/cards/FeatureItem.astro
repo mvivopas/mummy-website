@@ -67,7 +67,7 @@ const features: Array<FeatureItem> = [
       </div>
       {/* Right side: Description */}
       <div class="flex-[2] md:ml-6">
-        <p>
+        <p class="text-sm text-justify">
           Asesoramiento y dirección jurídica de la <span class="h-text">reclamación de compensación por los daños padecidos como consecuencia de acciones negligentes de otras personas o entidades</span>, como accidentes de tráfico, caídas, daños en inmuebles por obras colindantes, inundaciones, incendios, etc.
         </p>
       </div>
@@ -85,10 +85,10 @@ const features: Array<FeatureItem> = [
       </div>
       {/* Right side: Description */}
       <div class="flex-[2] md:ml-6">
-        <p>
+        <p class="text-sm text-justify">
           Confección de <span class="h-text">contratos y convenios dirigidos a la regulación de las relaciones privadas entre personas físicas y/o jurídicas</span>, en los diversos ámbitos del derecho civil, incluyendo compraventas, arrendamientos, préstamo, hipoteca, entre otros.
         </p>
-        <p>
+        <p class="text-sm text-justify">
           Asesoramiento y dirección jurídica de la resolución de la problemática relacionada por el <span class="h-text">cumplimiento defectuoso o incumplimiento de las obligaciones y contratos</span> en los diversos ámbitos del derecho civil, incluyendo la vía judicial.
         </p>
       </div>
@@ -106,7 +106,7 @@ const features: Array<FeatureItem> = [
       </div>
       {/* Right side: Description */}
       <div class="flex-[2] md:ml-6">
-        <p>
+        <p class="text-sm text-justify">
           Análisis, asesoramiento y dirección jurídica de la resolución de la problemática relacionada con la <span class="h-text">adquisición, transmisión y/o extinción de propiedad o derechos reales sobre bienes muebles o inmuebles</span>, en vía extrajudicial y, si es preciso, en la vía judicial.
         </p>
       </div>
@@ -124,12 +124,11 @@ const features: Array<FeatureItem> = [
       </div>
       {/* Right side: Description */}
       <div class="flex-[2] md:ml-6">
-        <p>
+        <p class="text-sm text-justify">
           Asesoramiento en el <span class="h-text">proceso de partición de una herencia</span>, en la vía extrajudicial y, si es preciso, dirección jurídica en la vía judicial para la resolución de la problemática suscitada.
         </p>
       </div>
-    </li>
-
+    </li>    
     <li class="flex flex-col md:flex-row items-center md:items-center text-left bg-offset p-6 md:p-10 rounded-lg shadow-lg transform transition-transform hover:scale-105">
       {/* Left side: Icon and Title */}
       <div class="flex flex-col items-center justify-center flex-[1]">
@@ -142,7 +141,7 @@ const features: Array<FeatureItem> = [
       </div>
       {/* Right side: Description */}
       <div class="flex-[2] md:ml-6">
-        <p>
+        <p class="text-sm text-justify">
           Asesoramiento en relación a las <span class="h-text">relaciones personales y patrimoniales de los miembros que integran la familia</span>. Dirección jurídica del proceso de resolución de la problemática en la vía extrajudicial y, si es preciso, en la vía judicial, priorizando las soluciones consensuadas.
         </p>
       </div>
@@ -152,44 +151,76 @@ const features: Array<FeatureItem> = [
 
 
 <style>
-p {
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-  letter-spacing: 0.5px;
-  font-size: var(--font-size-base);
-}
-
 li {
-  max-width: 80%;
+  max-width: 90%;
   margin: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  transition: margin 0.3s ease, font-size 0.3s ease;
 }
 
 li:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+p {
+    hyphens: auto;
+    font-size: var(--font-size-base);
+  }
+
 .h-text {
   color: var(--theme-primary);
   font-weight: bold;
-  font-size: 1rem;
 }
 
-@media (min-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 1024px) {
   li {
-    flex-direction: row;
+    flex-direction: column;
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+
+  .h-text {
+    font-size: 0.95rem;
+  }
+
+  p {
+    hyphens: auto;
+    font-size: var(--font-size-base);
   }
 }
 
-.size-14 {
-  width: 3.5rem;
-  height: 3.5rem;
+@media (max-width: 768px) {
+  li {
+    flex-direction: column;
+    max-width: 95%;
+    margin: 0.5rem auto;
+  }
+
+  .h-text {
+    font-size: 0.9rem;
+  }
+
+  p {
+    hyphens: auto;
+    font-size: calc(var(--font-size-base) * 0.9);
+  }
 }
 
-.size-16 {
-  width: 4rem;
-  height: 4rem;
+@media (max-width: 480px) {
+  li {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .h-text {
+    font-size: 0.85rem;
+  }
+
+  p {
+    font-size: calc(var(--font-size-base) * 0.85);
+  }
 }
+
 </style>

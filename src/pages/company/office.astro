@@ -90,23 +90,27 @@ const seo = {
       margin: 0 auto; /* Center the iframe */
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     .text-container-title {
       font-size: 2.5rem;
     }
+    .hero-image {
+        display: none;
+    }
+    .hero-image-mobile {
+      display: block;
+      max-width: 500px;
+      max-height: 200px;
+      margin: 0 auto;
+    }
+    .text-container {
+      margin: 40px auto;
+      padding: 0 1rem; /* Add some horizontal padding */
+    }
+  @media (max-width: 769px) {
+    .hero-image-mobile {
+      margin: 0 auto 10rem;
+    }
   }
-  @media (max-width: 768px) {
-      .hero-image {
-          display: none;
-      }
-      .hero-image-mobile {
-        display: block;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-      .text-container {
-        margin: 40px auto;
-        padding: 0 1rem; /* Add some horizontal padding */
-      }
   }
 </style>
