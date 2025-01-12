@@ -5,8 +5,8 @@ import Stats from "../../cards/Stats.astro";
 ---
 
 <Container>
-    <section class="hero-section__section">
-	    <FeatureContentSection title="Abogada en derecho civil">
+	<section class="hero-section__section">
+		<FeatureContentSection title="Abogada en derecho civil">
 			<Stats
 			id="home-stats"
 			stats={[
@@ -15,11 +15,11 @@ import Stats from "../../cards/Stats.astro";
 			]}
 			slot="stats"
 			/>
-            <p slot="lead" class="lead-text">
-                Licenciada en Derecho por la Universidad de Barcelona en <a class="highlighted-text" href="/company/about">1987</a>. <br></br>
-				Con despacho ubicado en <a class="highlighted-text" href="/company/office"> Ciutadella de Menorca</a>.
+			<p slot="lead" class="lead-text">
+				Licenciada en Derecho por la Universidad de Barcelona en <a class="highlighted-text" href="/company/about">1987</a>. <br></br>
+				Despacho ubicado en <a class="highlighted-text" href="/company/office"> Ciutadella de Menorca</a>.
 			</p>
-        </FeatureContentSection>
+		</FeatureContentSection>
 		<div class="hero-section__image">
 				<picture>
 					<img
@@ -31,6 +31,7 @@ import Stats from "../../cards/Stats.astro";
 		</div>
 	</section>
 </Container>
+
 
 <style>
 	.hero-section__section {

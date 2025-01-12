@@ -11,7 +11,7 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
-  site: 'https://odyssey-theme.sapling.supply/',
+  site: 'https://www.ainapascualmir.com/',
 
   // Generate sitemap (set to "false" to disable)
   sitemap: true,

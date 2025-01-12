@@ -4,9 +4,14 @@ import { Container } from '@components/odyssey-theme';
 import Layout from '../layouts/Page.astro';
 import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro';
 import Features from "../components/cards/FeatureItem.astro";
+
+const seo = {
+	title: 'Aina Pascual | Abogada',
+	description: 'Aina Pascual Mir · Abogada · Ciutadella de Menorca.',
+};
 ---
 
-<Layout>
+<Layout seo={seo}>
 	<HomeHeroSection />
 	<Container>
 		<section id="areas-especialidad" class="feature-card__section">

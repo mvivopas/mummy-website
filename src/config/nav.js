@@ -9,14 +9,14 @@ export const nav = [
 	},
 	{
 		title: 'Sobre mí',
-		slug: '/company/about',
+		slug: '/trayectoria_profesional',
 	},	
 	{
 		title: 'Despacho',
-		slug: '/company/office',
+		slug: '/despacho',
 	},
 	{
 		title: 'Contacta',
-		slug: '/company/contact',
+		slug: '/contacta',
 	},
 ];
