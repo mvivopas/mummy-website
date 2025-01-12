@@ -42,7 +42,6 @@ const mobileNavData = [
       menuButtonIconClose.toggleAttribute('hidden');
       
       if (navHeader.hasAttribute('mobile-menu-open')) {
-        menuButton.title = "Open Main Menu";
         bodyElement.style.removeProperty('overflow');
         bodyElement.style.removeProperty('position');
         bodyElement.style.removeProperty('top');
@@ -50,7 +49,6 @@ const mobileNavData = [
         window.scrollTo(0, scrollPosition);
         closeSubmenu();
       } else {
-        menuButton.title = "Close Main Menu";
         scrollPosition = window.pageYOffset;
         bodyElement.style.overflow = 'hidden';
         bodyElement.style.position = 'fixed';
@@ -83,7 +81,11 @@ const mobileNavData = [
 
     // Close submenu when clicking outside
     document.addEventListener('click', (event) => {
-      if (isSubmenuOpen && specialtyButton && !specialtyButton.contains(event.target)) {
+      if (
+        isSubmenuOpen &&
+        specialtyButton &&
+        (!(event.target instanceof Node) || !specialtyButton.contains(event.target as Node))
+      ) {
         closeSubmenu();
       }
     });
