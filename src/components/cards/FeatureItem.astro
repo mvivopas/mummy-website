@@ -5,55 +5,9 @@ import ContentSection from "../sections/FeatureContentSection.astro";
 
 import type { FeatureItem } from "../../types";
 
-const features: Array<FeatureItem> = [
-  {
-    title: "Derecho de Daños",
-    description:
-      ["Asesoramiento y dirección jurídica de la reclamación de compensación por los daños" +
-      " padecidos como consecuencia de acciones negligentes de otras personas o entidades," +
-      " como accidentes de tráfico, caídas, daños en inmuebles por obras colindantes," +
-      " inundaciones, incendios, etc."],
-    icon: "mdi:handshake",
-    link: "/landing-pages/derecho-civil",
-  },
-  {
-    title: "Obligaciones y Contratos",
-    description:
-      ["Confección de contratos y convenios dirigidos a la regulación de las relaciones privadas" +
-      " entre personas físicas y/o jurídicas, en los diversos ámbitos del derecho civil, incluyendo" +
-      " compraventas, arrendamientos, préstamo, hipoteca, entre otros.",
-      "Asesoramiento y dirección jurídica de la resolución de la problemática relacionada por" +
-      " el cumplimiento defectuoso o incumplimiento de las obligaciones y contratos en los diversos" +
-      " ámbitos del derecho civil, incluyendo la vía judicial."],
-    icon: "mdi:contract",
-    link: "/landing-pages/derecho-contratos",
-  },
-  {
-    title: "Propiedad y Derechos Reales",
-    description:
-      ["Análisis, asesoramiento y dirección jurídica de la resolución de la problemática relacionada con la adquisición, transmisión y/o extinción de propiedad o derechos reales sobre bienes muebles o inmuebles, en via extrajudicial y, si es preciso, en la vía judicial."],
-    icon: "mdi:account-lock",
-    link: "/landing-pages/derecho-real",
-  },
-  {
-    title: "Derecho Sucesorio",
-    description:
-      ["Asesoramiento en el proceso de partición de una herencia, en la vía extrajudicial y, si es preciso, dirección jurídica en la vía judicial para la resolución de la problemática suscitada."],
-    icon: "mdi:home-group",
-    link: "/landing-pages/derecho-sucesorio",
-  },
-  {
-  title: "Derecho Familiar",
-    description:
-      ["Asesoramiento en relación a las relaciones personales y patrimoniales de los miembros que integran la familia. Dirección jurídica del proceso de resolución de la problemática en la vía extrajudicial y, si es preciso, en la vía judicial, priorizando las soluciones consensuadas."],
-    icon: "mdi:crowd",
-    link: "/landing-pages/derecho-sucesorio",
-  },
-];
-
 ---
 
-<ContentSection title="Areas de especialidad" id="features">
+<ContentSection title="Áreas de especialidad">
   <ul class="grid max-w-5xl grid-cols-1 mx-auto gap-8">
     <li class="flex flex-col md:flex-row items-center md:items-center text-left bg-offset p-6 md:p-10 rounded-lg shadow-lg transform transition-transform hover:scale-105">
       {/* Left side: Icon and Title */}
