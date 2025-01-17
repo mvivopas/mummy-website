@@ -20,7 +20,8 @@ const mobileNavData = [
     const specialtyButton = document.querySelector('#specialtyButton');
     const specialtySubmenu = document.querySelector('#specialtySubmenu');
     const specialtyArrow = document.querySelector('#specialtyArrow');
-    
+    const menuLinks = document.querySelectorAll('#odysseyNavHeader .main-menu a');
+
     let scrollPosition = 0;
     let isSubmenuOpen = false;
 
@@ -40,7 +41,7 @@ const mobileNavData = [
 
       menuButtonIconHam.toggleAttribute('hidden');
       menuButtonIconClose.toggleAttribute('hidden');
-      
+
       if (navHeader.hasAttribute('mobile-menu-open')) {
         bodyElement.style.removeProperty('overflow');
         bodyElement.style.removeProperty('position');
@@ -55,20 +56,32 @@ const mobileNavData = [
         bodyElement.style.top = `-${scrollPosition}px`;
         bodyElement.style.width = '100%';
       }
-      
+
       navHeader.toggleAttribute('mobile-menu-open');
     }
 
     function toggleSubmenu(event) {
       event.preventDefault();
       event.stopPropagation();
-      
+
       if (!specialtySubmenu || !specialtyArrow) return;
-      
+
       isSubmenuOpen = !isSubmenuOpen;
       specialtySubmenu.classList.toggle('show-submenu');
       specialtyArrow.classList.toggle('rotate');
       specialtyButton.classList.toggle('active');
+    }
+
+    function closeMenuOnAnchorClick() {
+      if (navHeader.hasAttribute('mobile-menu-open')) {
+        navHeader.removeAttribute('mobile-menu-open');
+        bodyElement.style.removeProperty('overflow');
+        bodyElement.style.removeProperty('position');
+        bodyElement.style.removeProperty('top');
+        bodyElement.style.removeProperty('width');
+        menuButtonIconHam.removeAttribute('hidden');
+        menuButtonIconClose.setAttribute('hidden', true);
+      }
     }
 
     if (menuButton) {
@@ -79,12 +92,27 @@ const mobileNavData = [
       specialtyButton.addEventListener('click', toggleSubmenu);
     }
 
+    // Add click event listener for all menu links
+    menuLinks.forEach(link => {
+      link.addEventListener('click', (event) => {
+        if (link.getAttribute('href').startsWith('#')) {
+          event.preventDefault(); // Prevent default anchor behavior
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll
+          }
+        }
+        closeMenuOnAnchorClick(); // Close the menu
+      });
+    });
+
     // Close submenu when clicking outside
     document.addEventListener('click', (event) => {
       if (
         isSubmenuOpen &&
         specialtyButton &&
-        (!(event.target instanceof Node) || !specialtyButton.contains(event.target as Node))
+        (!(event.target instanceof Node) || !specialtyButton.contains(event.target))
       ) {
         closeSubmenu();
       }
@@ -106,6 +134,7 @@ const mobileNavData = [
     });
   });
 </script>
+
 
 <header id="odysseyNavHeader" class={`${rightMenu ? "header--right" : ``}`.trim()}>
   <div class="header-logo-menu__container">
