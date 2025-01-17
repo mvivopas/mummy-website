@@ -4,7 +4,7 @@ export const nav = [
 		slug: '/',
 	},
 	{
-		title: 'Areas de Especialidad',
+		title: 'Áreas de Especialidad',
 		slug: '/#areas-especialidad',
 	},
 	{
